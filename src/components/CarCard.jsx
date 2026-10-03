@@ -3,12 +3,14 @@ import { motion } from 'framer-motion'
 import { ArrowRight, Fuel, Settings2, Sparkles, Users } from 'lucide-react'
 import { useBooking } from '../context/BookingContext'
 import { useLang } from '../hooks/useLang'
+import { localize } from '../utils/format'
 import CarCarousel from './CarCarousel'
 
 const CarCard = forwardRef(function CarCard({ car }, ref) {
-  const { t, fmt, name } = useLang()
+  const { t, code, fmt, name } = useLang()
   const { selectCar } = useBooking()
   const label = name(car)
+  const colorName = localize(car.colorName, code)
 
   const specs = [
     car.transmission && {
@@ -28,12 +30,24 @@ const CarCard = forwardRef(function CarCard({ car }, ref) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -8 }}
       transition={{ duration: 0.3, ease: 'easeOut' }}
-      className="grid grid-cols-1 items-center gap-3 border-t border-line py-[22px] last:border-b md:grid-cols-[200px_1fr_auto] md:gap-7"
+      className="grid grid-cols-1 items-center gap-3 border-t border-line py-5.5 last:border-b md:grid-cols-[200px_1fr_auto] md:gap-7"
     >
       <CarCarousel images={car.images} label={label} />
 
       <div>
-        <h3 className="text-card">{label}</h3>
+        <div className="flex items-center gap-2.5">
+          <h3 className="text-card">{label}</h3>
+          {car.color && (
+            <span
+              role={colorName ? 'img' : undefined}
+              aria-label={colorName ? `${t('fleet.color')}: ${colorName}` : undefined}
+              aria-hidden={colorName ? undefined : true}
+              title={colorName || undefined}
+              className="size-5 shrink-0 rounded-full border-2 border-paper/70"
+              style={{ backgroundColor: car.color }}
+            />
+          )}
+        </div>
         <ul className="m-0 mt-2 flex list-none flex-wrap gap-x-4 gap-y-1 p-0 text-[15px] text-mute">
           {specs.map(({ Icon, text }) => (
             <li key={text} className="flex items-center gap-1.5">

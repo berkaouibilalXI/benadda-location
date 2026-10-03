@@ -11,6 +11,12 @@
     "seats": 5,
     "fuel": "petrol",
     "features": [],
+    "color": "#C1121F",
+    "colorName": {
+      "en": "Dark red",
+      "fr": "Rouge foncé",
+      "ar": "أحمر داكن"
+    },
     "pricePerDay": 5500,
     "available": true,
     "images": []
@@ -27,9 +33,19 @@
     "seats": 5,
     "fuel": "petrol",
     "features": [],
+    "color": "#FF0000",
+    "colorName": {
+      "en": "Red",
+      "fr": "Rouge",
+      "ar": "أحمر"
+    },
     "pricePerDay": 6500,
     "available": true,
-    "images": ["https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800&auto=format&fit=crop&q=80","https://images.unsplash.com/photo-1553440569-bcc63803a83d?w=800&auto=format&fit=crop&q=80","https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=800&auto=format&fit=crop&q=80"]
+    "images": [
+      "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1553440569-bcc63803a83d?w=800&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=800&auto=format&fit=crop&q=80"
+    ]
   },
   {
     "id": "family-sedan",
@@ -43,6 +59,12 @@
     "seats": 5,
     "fuel": "diesel",
     "features": [],
+    "color": "#6B7280",
+    "colorName": {
+      "en": "Grey",
+      "fr": "Gris",
+      "ar": "رمادي"
+    },
     "pricePerDay": 9000,
     "available": true,
     "images": []
@@ -61,6 +83,12 @@
     "features": [
       "leather"
     ],
+    "color": "#111111",
+    "colorName": {
+      "en": "Black",
+      "fr": "Noir",
+      "ar": "أسود"
+    },
     "pricePerDay": 15000,
     "available": true,
     "images": []
@@ -77,6 +105,12 @@
     "seats": 5,
     "fuel": "diesel",
     "features": [],
+    "color": "#1D4ED8",
+    "colorName": {
+      "en": "Blue",
+      "fr": "Bleu",
+      "ar": "أزرق"
+    },
     "pricePerDay": 13000,
     "available": true,
     "images": []
@@ -93,6 +127,12 @@
     "seats": 7,
     "fuel": "diesel",
     "features": [],
+    "color": "#D1D5DB",
+    "colorName": {
+      "en": "Silver",
+      "fr": "Argent",
+      "ar": "فضي"
+    },
     "pricePerDay": 18000,
     "available": true,
     "images": []
@@ -109,6 +149,12 @@
     "seats": 2,
     "fuel": "petrol",
     "features": [],
+    "color": "#F59E0B",
+    "colorName": {
+      "en": "Yellow",
+      "fr": "Jaune",
+      "ar": "أصفر"
+    },
     "pricePerDay": 32000,
     "available": true,
     "images": []
@@ -125,6 +171,12 @@
     "seats": 5,
     "fuel": "petrol",
     "features": [],
+    "color": "#15803D",
+    "colorName": {
+      "en": "Green",
+      "fr": "Vert",
+      "ar": "أخضر"
+    },
     "pricePerDay": 40000,
     "available": true,
     "images": []
