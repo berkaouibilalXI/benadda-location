@@ -50,7 +50,6 @@
     "error": "The fleet could not be loaded.",
     "retry": "Try again",
     "empty": "No cars in this class yet.",
-    "rateNote": "Rates are examples. Replace them with your current price list.",
     "prev": "Previous photo",
     "next": "Next photo",
     "goTo": "Show photo {{n}}",

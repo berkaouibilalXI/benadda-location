@@ -77,8 +77,6 @@ export default function Fleet({ cars, status, reload }) {
             )}
           </div>
         )}
-
-        <p className="mt-5 text-sm text-mute">{t('fleet.rateNote')}</p>
       </div>
     </section>
   )

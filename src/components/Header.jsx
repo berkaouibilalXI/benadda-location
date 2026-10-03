@@ -23,7 +23,7 @@ export default function Header() {
         </a>
 
         <div className="ms-auto flex items-center gap-4 md:gap-6">
-          <nav className="hidden gap-[22px] text-[15px] font-semibold md:flex">
+          <nav className="hidden gap-5.5 text-[15px] font-semibold md:flex">
             {links.map((l) => (
               <a key={l.href} href={l.href} className="no-underline hover:text-brand">
                 {t(l.key)}
@@ -34,7 +34,7 @@ export default function Header() {
           <LanguageSwitcher />
 
           <a href="#reserve" className="btn hidden py-2.5 sm:inline-flex">
-            <CalendarCheck className="size-[18px]" aria-hidden="true" />
+            <CalendarCheck className="size-4.5" aria-hidden="true" />
             {t('header.book')}
           </a>
 

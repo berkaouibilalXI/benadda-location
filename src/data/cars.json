@@ -19,6 +19,7 @@
     },
     "pricePerDay": 7000,
     "available": true,
+    "imagesFolder": "Doblo/Grise",
     "images": []
   },
   {
@@ -41,6 +42,7 @@
     },
     "pricePerDay": 7000,
     "available": true,
+    "imagesFolder": "Doblo/Blanche",
     "images": []
   },
   {
@@ -51,7 +53,7 @@
       "ar": "فيات 500X أحمر"
     },
     "category": "suv",
-    "transmission": "manual",
+    "transmission": "automatic",
     "seats": 5,
     "fuel": "petrol",
     "features": [],
@@ -63,6 +65,7 @@
     },
     "pricePerDay": 9000,
     "available": true,
+    "imagesFolder": "500X/Rouge",
     "images": []
   },
   {
@@ -73,7 +76,7 @@
       "ar": "فيات 500X أزرق"
     },
     "category": "suv",
-    "transmission": "manual",
+    "transmission": "automatic",
     "seats": 5,
     "fuel": "petrol",
     "features": [],
@@ -85,6 +88,7 @@
     },
     "pricePerDay": 9000,
     "available": true,
+    "imagesFolder": "500X/Bleue",
     "images": []
   },
   {
@@ -95,7 +99,7 @@
       "ar": "فيات 500X أبيض"
     },
     "category": "suv",
-    "transmission": "manual",
+    "transmission": "automatic",
     "seats": 5,
     "fuel": "petrol",
     "features": [],
@@ -107,6 +111,7 @@
     },
     "pricePerDay": 9000,
     "available": true,
+    "imagesFolder": "500X/Blanche",
     "images": []
   }
 ]

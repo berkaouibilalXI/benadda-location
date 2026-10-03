@@ -5,6 +5,7 @@ import { useBooking } from '../context/BookingContext'
 import { useLang } from '../hooks/useLang'
 import { localize } from '../utils/format'
 import CarCarousel from './CarCarousel'
+import {Cog} from "lucide-react"
 
 const CarCard = forwardRef(function CarCard({ car }, ref) {
   const { t, code, fmt, name } = useLang()
@@ -14,7 +15,7 @@ const CarCard = forwardRef(function CarCard({ car }, ref) {
 
   const specs = [
     car.transmission && {
-      Icon: Settings2,
+      Icon: Cog,
       text: t(`specs.transmission.${car.transmission}`, { defaultValue: car.transmission }),
     },
     car.seats && { Icon: Users, text: t('specs.seats', { count: car.seats }) },
@@ -36,7 +37,6 @@ const CarCard = forwardRef(function CarCard({ car }, ref) {
 
       <div>
         <div className="flex items-center gap-2.5">
-          <h3 className="text-card">{label}</h3>
           {car.color && (
             <span
               role={colorName ? 'img' : undefined}
@@ -47,6 +47,7 @@ const CarCard = forwardRef(function CarCard({ car }, ref) {
               style={{ backgroundColor: car.color }}
             />
           )}
+          <h3 className="text-card">{label}</h3>
         </div>
         <ul className="m-0 mt-2 flex list-none flex-wrap gap-x-4 gap-y-1 p-0 text-[15px] text-mute">
           {specs.map(({ Icon, text }) => (
