@@ -1,0 +1,149 @@
+{
+  "meta": {
+    "title": "Benadda Dreamcar | Car rental",
+    "description": "Car rental in Algeria. Clean, serviced cars with clear daily rates."
+  },
+  "common": {
+    "currency": "DA",
+    "skip": "Skip to content",
+    "language": "Language"
+  },
+  "nav": {
+    "fleet": "Fleet",
+    "how": "How it works",
+    "reserve": "Reserve",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "home": "Benadda Dreamcar home"
+  },
+  "header": {
+    "book": "Book a car"
+  },
+  "hero": {
+    "title": "Pick the car. We hand over the keys.",
+    "text": "Clean, serviced cars from city runabouts to sport coupes. Clear daily rates, a printed contract, and no surprises at the desk.",
+    "seeFleet": "See the fleet",
+    "getQuote": "Get a quote",
+    "facts": [
+      {
+        "title": "Every car",
+        "text": "Inspected and cleaned before each handover"
+      },
+      {
+        "title": "Fixed rates",
+        "text": "The daily price you see is the price you pay"
+      },
+      {
+        "title": "Same-day",
+        "text": "Reserve in the morning, drive in the afternoon"
+      }
+    ]
+  },
+  "fleet": {
+    "title": "The fleet",
+    "filter": "Filter by class",
+    "all": "All",
+    "perDay": "per day",
+    "reserve": "Reserve",
+    "booked": "Unavailable",
+    "loading": "Loading the fleet…",
+    "error": "The fleet could not be loaded.",
+    "retry": "Try again",
+    "empty": "No cars in this class yet.",
+    "rateNote": "Rates are examples. Replace them with your current price list."
+  },
+  "categories": {
+    "city": "City",
+    "sedan": "Sedan",
+    "suv": "SUV",
+    "sport": "Sport"
+  },
+  "specs": {
+    "transmission": {
+      "manual": "Manual",
+      "automatic": "Automatic"
+    },
+    "fuel": {
+      "petrol": "Petrol",
+      "diesel": "Diesel",
+      "hybrid": "Hybrid",
+      "electric": "Electric"
+    },
+    "seats_one": "{{count}} seat",
+    "seats_other": "{{count}} seats"
+  },
+  "features": {
+    "leather": "Leather"
+  },
+  "how": {
+    "title": "Four steps to the road",
+    "logoAlt": "Benadda Dreamcar logo",
+    "steps": [
+      {
+        "title": "Choose",
+        "text": "Pick a car and your dates. Ask us if the car you want is free."
+      },
+      {
+        "title": "Confirm",
+        "text": "We send the rate, the deposit and the mileage limit in writing."
+      },
+      {
+        "title": "Collect",
+        "text": "Walk around the car with us, note every mark, sign, and go."
+      },
+      {
+        "title": "Return",
+        "text": "Bring it back with the same fuel level. We check it and release the deposit."
+      }
+    ],
+    "bring": {
+      "title": "Bring",
+      "items": [
+        "Valid driving licence, held at least two years",
+        "National ID or passport",
+        "Deposit, agreed when you book"
+      ]
+    },
+    "included": {
+      "title": "Included",
+      "items": [
+        "Basic insurance cover",
+        "Daily mileage allowance",
+        "Roadside contact, any hour"
+      ]
+    }
+  },
+  "reserve": {
+    "title": "Reserve a car",
+    "name": "Name",
+    "phone": "Phone",
+    "car": "Car",
+    "days": "Days",
+    "pickup": "Pick-up date",
+    "notes": "Notes",
+    "notesPlaceholder": "Child seat, airport pick-up...",
+    "submit": "Send request on WhatsApp",
+    "noCars": "No car is available to book right now.",
+    "previewTitle": "Your WhatsApp message",
+    "total": "Estimated total",
+    "returnOn": "Return on",
+    "rate_one": "{{price}} {{currency}} × {{count}} day",
+    "rate_other": "{{price}} {{currency}} × {{count}} days"
+  },
+  "whatsapp": {
+    "title": "Reservation request",
+    "name": "Name",
+    "phone": "Phone",
+    "car": "Car",
+    "days": "Days",
+    "from": "From",
+    "to": "Until",
+    "total": "Estimated total",
+    "notes": "Notes"
+  },
+  "footer": {
+    "phone": "Phone",
+    "hours": "Daily 8:00 to 20:00",
+    "note": "Replace these details with your own."
+  }
+}

@@ -1,0 +1,132 @@
+[
+  {
+    "id": "hatchback-city",
+    "name": {
+      "en": "Hatchback City",
+      "fr": "Citadine compacte",
+      "ar": "سيارة مدينة صغيرة"
+    },
+    "category": "city",
+    "transmission": "manual",
+    "seats": 5,
+    "fuel": "petrol",
+    "features": [],
+    "pricePerDay": 5500,
+    "image": null,
+    "available": true
+  },
+  {
+    "id": "compact-city-auto",
+    "name": {
+      "en": "Compact City Auto",
+      "fr": "Citadine automatique",
+      "ar": "سيارة مدينة أوتوماتيك"
+    },
+    "category": "city",
+    "transmission": "automatic",
+    "seats": 5,
+    "fuel": "petrol",
+    "features": [],
+    "pricePerDay": 6500,
+    "image": null,
+    "available": true
+  },
+  {
+    "id": "family-sedan",
+    "name": {
+      "en": "Family Sedan",
+      "fr": "Berline familiale",
+      "ar": "سيدان عائلية"
+    },
+    "category": "sedan",
+    "transmission": "automatic",
+    "seats": 5,
+    "fuel": "diesel",
+    "features": [],
+    "pricePerDay": 9000,
+    "image": null,
+    "available": true
+  },
+  {
+    "id": "executive-sedan",
+    "name": {
+      "en": "Executive Sedan",
+      "fr": "Berline de direction",
+      "ar": "سيدان تنفيذية"
+    },
+    "category": "sedan",
+    "transmission": "automatic",
+    "seats": 5,
+    "fuel": "petrol",
+    "features": [
+      "leather"
+    ],
+    "pricePerDay": 15000,
+    "image": null,
+    "available": true
+  },
+  {
+    "id": "crossover-suv",
+    "name": {
+      "en": "Crossover SUV",
+      "fr": "SUV crossover",
+      "ar": "سيارة كروس أوفر"
+    },
+    "category": "suv",
+    "transmission": "automatic",
+    "seats": 5,
+    "fuel": "diesel",
+    "features": [],
+    "pricePerDay": 13000,
+    "image": null,
+    "available": true
+  },
+  {
+    "id": "seven-seat-suv",
+    "name": {
+      "en": "Seven-Seat SUV",
+      "fr": "SUV 7 places",
+      "ar": "سيارة دفع رباعي 7 مقاعد"
+    },
+    "category": "suv",
+    "transmission": "automatic",
+    "seats": 7,
+    "fuel": "diesel",
+    "features": [],
+    "pricePerDay": 18000,
+    "image": null,
+    "available": true
+  },
+  {
+    "id": "sport-coupe",
+    "name": {
+      "en": "Sport Coupe",
+      "fr": "Coupé sport",
+      "ar": "كوبيه رياضية"
+    },
+    "category": "sport",
+    "transmission": "automatic",
+    "seats": 2,
+    "fuel": "petrol",
+    "features": [],
+    "pricePerDay": 32000,
+    "image": null,
+    "available": true
+  },
+  {
+    "id": "performance-sedan",
+    "name": {
+      "en": "Performance Sedan",
+      "fr": "Berline sportive",
+      "ar": "سيدان عالية الأداء"
+    },
+    "category": "sport",
+    "transmission": "automatic",
+    "seats": 5,
+    "fuel": "petrol",
+    "features": [],
+    "pricePerDay": 40000,
+    "image": null,
+    "available": true
+  }
+]
