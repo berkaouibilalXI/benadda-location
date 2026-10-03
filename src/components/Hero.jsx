@@ -20,7 +20,7 @@ function Gauge() {
       fill="none"
       stroke="#E51D23"
       aria-hidden="true"
-      className="pointer-events-none absolute -top-[90px] end-[-140px] w-[760px] max-w-none opacity-95 rtl:-scale-x-100 max-md:-top-[60px] max-md:end-[-190px] max-md:w-[520px] max-md:opacity-55"
+      className="pointer-events-none absolute -top-22.5 end-[-140px] w-[760px] max-w-none opacity-95 rtl:-scale-x-100 max-md:-top-[60px] max-md:end-[-190px] max-md:w-[520px] max-md:opacity-55"
     >
       {arcs.map((a) => (
         <motion.path
@@ -64,7 +64,7 @@ export default function Hero() {
           className="mt-[70px] grid grid-cols-1 border-t border-line md:grid-cols-3"
         >
           {facts.map((f) => (
-            <div key={f.title} className="pe-[18px] pt-5">
+            <div key={f.title} className="pe-4.5 pt-5">
               <b className="block text-stat font-black stretch-125 text-brand">{f.title}</b>
               <span className="text-[15px] text-mute">{f.text}</span>
             </div>

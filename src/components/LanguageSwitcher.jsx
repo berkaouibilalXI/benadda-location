@@ -6,7 +6,7 @@ export default function LanguageSwitcher() {
   const { t, code, changeLanguage } = useLang()
   return (
     <div className="flex items-center gap-2">
-      <Languages className="size-[18px] text-mute max-sm:hidden" aria-hidden="true" />
+      <Languages className="size-4.5 text-mute max-sm:hidden" aria-hidden="true" />
       <div role="group" aria-label={t('common.language')} className="flex border-2 border-edge">
         {languages.map((l) => (
           <button

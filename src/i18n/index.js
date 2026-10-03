@@ -9,7 +9,7 @@ import ar from './locales/ar.json'
 export const languages = [
   { code: 'en', label: 'EN', name: 'English', dir: 'ltr', locale: 'en-GB' },
   { code: 'fr', label: 'FR', name: 'Français', dir: 'ltr', locale: 'fr-FR' },
-  { code: 'ar', label: 'ع', name: 'العربية', dir: 'rtl', locale: 'ar-DZ-u-nu-latn' },
+  // { code: 'ar', label: 'ع', name: 'العربية', dir: 'rtl', locale: 'ar-DZ-u-nu-latn' },
 ]
 
 export const getLanguage = (code) =>
