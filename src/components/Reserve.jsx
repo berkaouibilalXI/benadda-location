@@ -173,7 +173,7 @@ export default function Reserve({ cars }) {
 
             <div className="mb-4 flex items-baseline justify-between gap-3">
               <span className="text-[15px] text-mute">{t('reserve.total')}</span>
-              <div className="relative h-[29px] overflow-hidden text-end">
+              <div className="relative h-7.25 overflow-hidden text-end">
                 <AnimatePresence mode="popLayout" initial={false}>
                   <motion.b
                     key={total}
