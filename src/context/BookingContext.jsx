@@ -9,13 +9,11 @@ export function BookingProvider({ cars, children }) {
 
   const setField = useCallback((key, value) => setForm((f) => ({ ...f, [key]: value })), [])
 
-  // The selected car, falling back to the first bookable one (e.g. while data is loading).
   const car = useMemo(
     () => cars.find((c) => c.id === form.carId && c.available) ?? cars.find((c) => c.available) ?? null,
     [cars, form.carId],
   )
 
-  // "Reserve" on a car card: pick it and jump to the form.
   const selectCar = useCallback((id) => {
     setForm((f) => ({ ...f, carId: id }))
     document.getElementById('reserve')?.scrollIntoView()

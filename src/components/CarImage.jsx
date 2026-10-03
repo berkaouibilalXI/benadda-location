@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import CarIllustration from './CarIllustration'
 
-// Photo if the car has one (and it loads), drawing otherwise.
 export default function CarImage({ car, label, className = '' }) {
   const [failed, setFailed] = useState(false)
 

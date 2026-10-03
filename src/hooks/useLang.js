@@ -2,7 +2,6 @@ import { useTranslation } from 'react-i18next'
 import { getLanguage } from '../i18n'
 import { localize, makeFormatters } from '../utils/format'
 
-// Current language helpers for components.
 export function useLang() {
   const { t, i18n } = useTranslation()
   const code = getLanguage(i18n.resolvedLanguage).code

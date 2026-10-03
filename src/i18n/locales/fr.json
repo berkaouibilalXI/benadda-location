@@ -50,7 +50,11 @@
     "error": "Impossible de charger la flotte.",
     "retry": "Réessayer",
     "empty": "Aucune voiture dans cette catégorie pour l'instant.",
-    "rateNote": "Les tarifs sont des exemples. Remplacez-les par votre grille tarifaire actuelle."
+    "rateNote": "Les tarifs sont des exemples. Remplacez-les par votre grille tarifaire actuelle.",
+    "prev": "Photo précédente",
+    "next": "Photo suivante",
+    "goTo": "Afficher la photo {{n}}",
+    "photoOf": "Photo {{current}} sur {{total}}"
   },
   "categories": {
     "city": "Citadines",

@@ -37,7 +37,6 @@ export default function HowItWorks() {
         <ol className="m-0 grid list-none grid-cols-1 gap-[26px] p-0 sm:grid-cols-2 md:grid-cols-4">
           {steps.map((s, i) => (
             <li key={s.title}>
-              {/* The red bar draws in as the step scrolls into view */}
               <motion.div
                 className="h-1.5 origin-left bg-brand rtl:origin-right"
                 initial={{ scaleX: 0 }}

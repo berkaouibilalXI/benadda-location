@@ -1,6 +1,5 @@
 import { getLanguage } from '../i18n'
 
-// "abc" -> "abc"; { en, fr, ar } -> the right one with fallbacks.
 export function localize(value, lang) {
   if (value == null) return ''
   if (typeof value === 'string') return value

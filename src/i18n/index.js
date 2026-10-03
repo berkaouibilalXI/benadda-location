@@ -6,11 +6,9 @@ import en from './locales/en.json'
 import fr from './locales/fr.json'
 import ar from './locales/ar.json'
 
-// To add a language: create locales/xx.json, import it here, add it below.
 export const languages = [
   { code: 'en', label: 'EN', name: 'English', dir: 'ltr', locale: 'en-GB' },
   { code: 'fr', label: 'FR', name: 'Français', dir: 'ltr', locale: 'fr-FR' },
-  // "-u-nu-latn" keeps Latin digits, which is what Algerians use day to day
   { code: 'ar', label: 'ع', name: 'العربية', dir: 'rtl', locale: 'ar-DZ-u-nu-latn' },
 ]
 

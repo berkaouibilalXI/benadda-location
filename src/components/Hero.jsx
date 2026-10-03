@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion'
 import { useLang } from '../hooks/useLang'
 
-// One orchestrated entrance: the gauge draws itself, then the copy rises in.
 const column = { hidden: {}, show: { transition: { staggerChildren: 0.09, delayChildren: 0.2 } } }
 const rise = {
   hidden: { opacity: 0, y: 18 },

@@ -25,7 +25,6 @@ export default function Reserve({ cars }) {
   const { i18n } = useTranslation()
   const { form, setField, car } = useBooking()
 
-  // The message is written in the visitor's language unless site.whatsappLanguage says otherwise.
   const msgLang = site.whatsappLanguage || code
   const tMsg = useMemo(() => i18n.getFixedT(msgLang), [i18n, msgLang, code])
   const fMsg = useMemo(() => makeFormatters(msgLang), [msgLang])
@@ -36,7 +35,6 @@ export default function Reserve({ cars }) {
   const total = car && days ? car.pricePerDay * days : 0
   const currency = t('common.currency')
 
-  // Rebuilt on every keystroke, so the preview and the WhatsApp link are always current.
   const lines = useMemo(
     () =>
       buildWhatsAppMessage(tMsg, {
@@ -49,7 +47,7 @@ export default function Reserve({ cars }) {
         total: total ? `${fMsg.number(total)} ${tMsg('common.currency')}` : '',
         notes: form.notes,
       }),
-    [tMsg, fMsg, msgLang, form.name, form.phone, form.notes, car, days, form.startDate, total], // eslint-disable-line react-hooks/exhaustive-deps
+    [tMsg, fMsg, msgLang, form.name, form.phone, form.notes, car, days, form.startDate, total],
   )
 
   const onSubmit = (e) => {

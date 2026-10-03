@@ -8,7 +8,6 @@ export default function Fleet({ cars, status, reload }) {
   const { t } = useLang()
   const [filter, setFilter] = useState('all')
 
-  // Tabs come from the data: add a car with a new category and its tab appears.
   const categories = useMemo(() => ['all', ...new Set(cars.map((c) => c.category))], [cars])
   const visible = cars.filter((c) => filter === 'all' || c.category === filter)
   const labelFor = (c) => (c === 'all' ? t('fleet.all') : t(`categories.${c}`, { defaultValue: c }))

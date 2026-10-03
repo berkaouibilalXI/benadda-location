@@ -1,27 +1,20 @@
 @import 'tailwindcss';
 
-/* ------------------------------------------------------------------ */
-/* Theme: replaces tailwind.config.js. Every variable below becomes a  */
-/* utility (e.g. --color-brand -> bg-brand, --text-h2 -> text-h2).     */
-/* ------------------------------------------------------------------ */
 @theme {
-  /* Colours */
-  --color-brand: #e51d23; /* Benadda red */
+  --color-brand: #e51d23;
   --color-brand-dark: #b8151b;
-  --color-ink: #000000; /* page background */
-  --color-paper: #ffffff; /* light section / text on dark */
-  --color-mute: #9a9a9a; /* secondary text on dark */
-  --color-line: #2a2a2a; /* hairlines on dark */
-  --color-field: #111111; /* input background */
-  --color-edge: #444444; /* input / tab borders */
-  --color-soft: #d6d6d6; /* hero paragraph */
-  --color-graphite: #333333; /* body text on light section */
+  --color-ink: #000000;
+  --color-paper: #ffffff;
+  --color-mute: #9a9a9a;
+  --color-line: #2a2a2a;
+  --color-field: #111111;
+  --color-edge: #444444;
+  --color-soft: #d6d6d6;
+  --color-graphite: #333333;
 
-  /* Fonts: Archivo is variable (wdth + wght), Cairo covers Arabic glyphs */
   --font-sans: 'Archivo', 'Cairo', Arial, sans-serif;
   --font-display: 'Archivo', 'Cairo', 'Arial Black', Arial, sans-serif;
 
-  /* Type scale */
   --text-base: 17px;
   --text-base--line-height: 1.55;
   --text-display: clamp(44px, 8.4vw, 104px);
@@ -41,19 +34,16 @@
 
   --tracking-display: -0.01em;
 
-  /* Breakpoints: the original design switches layout at 820px */
   --breakpoint-*: initial;
   --breakpoint-sm: 560px;
   --breakpoint-md: 820px;
   --breakpoint-lg: 1100px;
 
-  /* Sizes */
-  --container-wrap: 1120px; /* max-w-wrap */
-  --spacing-section: 78px; /* py-section */
-  --spacing-header: 64px; /* h-header */
+  --container-wrap: 1120px;
+  --spacing-section: 78px;
+  --spacing-header: 64px;
 }
 
-/* Variable-font width axis */
 @utility stretch-112 {
   font-stretch: 112%;
 }
@@ -121,7 +111,6 @@
     font: inherit;
     font-weight: 800;
     font-stretch: 112%;
-    /* slanted right edge, mirrored in RTL */
     clip-path: polygon(0 0, 100% 0, calc(100% - 14px) 100%, 0 100%);
     @apply inline-flex cursor-pointer items-center justify-center gap-2 border-0 bg-brand px-[26px] py-[14px] text-paper no-underline transition-colors duration-150;
   }

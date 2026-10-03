@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import { ArrowRight, Fuel, Settings2, Sparkles, Users } from 'lucide-react'
 import { useBooking } from '../context/BookingContext'
 import { useLang } from '../hooks/useLang'
-import CarImage from './CarImage'
+import CarCarousel from './CarCarousel'
 
 const CarCard = forwardRef(function CarCard({ car }, ref) {
   const { t, fmt, name } = useLang()
@@ -30,11 +30,7 @@ const CarCard = forwardRef(function CarCard({ car }, ref) {
       transition={{ duration: 0.3, ease: 'easeOut' }}
       className="grid grid-cols-1 items-center gap-3 border-t border-line py-[22px] last:border-b md:grid-cols-[200px_1fr_auto] md:gap-7"
     >
-      <CarImage
-        car={car}
-        label={label}
-        className={car.image ? 'max-md:max-w-[320px]' : 'max-md:w-[170px]'}
-      />
+      <CarCarousel images={car.images} label={label} />
 
       <div>
         <h3 className="text-card">{label}</h3>

@@ -1,4 +1,3 @@
-// Fallback drawing used whenever a car has no photo.
 export default function CarIllustration({ label, className = '' }) {
   return (
     <svg viewBox="0 0 300 100" role="img" aria-label={label} className={`h-auto fill-paper ${className}`}>

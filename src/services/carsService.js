@@ -1,25 +1,22 @@
-// Single place that knows where car data comes from.
-// Switch source with VITE_CARS_PROVIDER = json | supabase | api  (see .env.example).
-// Whatever the source, every car is normalised to the same shape:
-// { id, name, category, transmission, seats, fuel, features[], pricePerDay, image, available }
-
 const env = import.meta.env
 const provider = env.VITE_CARS_PROVIDER || 'json'
 
-// ---------- helpers ----------
-const isAbsolute = (url) => /^(https?:)?\/\//.test(url) || url.startsWith('data:')
+const isAbsolute = (url) => /^(https?:)?\//.test(url) || url.startsWith('data:')
 
 function resolveImage(image, { supabase = false } = {}) {
-  if (!image) return null
+  if (!image || typeof image !== 'string') return null
   if (isAbsolute(image)) return image
   if (supabase) {
     return `${env.VITE_SUPABASE_URL}/storage/v1/object/public/${env.VITE_SUPABASE_BUCKET || 'car-images'}/${image}`
   }
-  // Local file in /public (works with any Vite `base`)
   return `${env.BASE_URL}${image.replace(/^\//, '')}`
 }
 
 function normalizeCar(raw, opts) {
+  const toList = (v) => (Array.isArray(v) ? v : v ? [v] : [])
+  const rawImages = [...toList(raw.images), ...toList(raw.image)]
+  const images = rawImages.map((src) => resolveImage(src, opts)).filter(Boolean)
+
   return {
     id: String(raw.id),
     name: raw.name,
@@ -29,12 +26,12 @@ function normalizeCar(raw, opts) {
     fuel: raw.fuel ?? null,
     features: raw.features ?? [],
     pricePerDay: Number(raw.pricePerDay ?? raw.price_per_day ?? 0),
-    image: resolveImage(raw.image, opts),
+    images,
+    image: images[0] ?? null,
     available: raw.available !== false,
   }
 }
 
-// ---------- providers ----------
 async function fromJson() {
   const { default: cars } = await import('../data/cars.json')
   return cars.map((c) => normalizeCar(c))
@@ -44,9 +41,11 @@ async function fromSupabase() {
   const base = env.VITE_SUPABASE_URL
   const key = env.VITE_SUPABASE_ANON_KEY
   if (!base || !key) throw new Error('Missing VITE_SUPABASE_URL / VITE_SUPABASE_ANON_KEY')
+
   const res = await fetch(`${base}/rest/v1/cars?select=*&order=sort.asc,price_per_day.asc`, {
     headers: { apikey: key, Authorization: `Bearer ${key}` },
   })
+
   if (!res.ok) throw new Error(`Supabase error ${res.status}`)
   const rows = await res.json()
   return rows.map((r) => normalizeCar(r, { supabase: true }))

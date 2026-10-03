@@ -13,7 +13,6 @@ export default function App() {
   const { cars, status, reload } = useCars()
   const { t, code, dir } = useLang()
 
-  // Keep <html lang/dir> and the page title in sync with the chosen language
   useEffect(() => {
     document.documentElement.lang = code
     document.documentElement.dir = dir
@@ -25,7 +24,7 @@ export default function App() {
     <BookingProvider cars={cars}>
       <a
         href="#top"
-        className="sr-only focus:not-sr-only focus:fixed focus:start-3 focus:top-3 focus:z-[60] focus:bg-brand focus:px-4 focus:py-2"
+        className="sr-only focus:not-sr-only focus:fixed focus:inset-s-3 focus:top-3 focus:z-60 focus:bg-brand focus:px-4 focus:py-2"
       >
         {t('common.skip')}
       </a>
