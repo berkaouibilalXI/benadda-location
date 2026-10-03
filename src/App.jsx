@@ -32,7 +32,7 @@ export default function App() {
       <main id="top">
         <Hero />
         <Fleet cars={cars} status={status} reload={reload} />
-        {/* <HowItWorks /> */}
+        <HowItWorks />
         <Reserve cars={cars} />
       </main>
       {/* <Footer /> */}

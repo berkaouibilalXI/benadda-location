@@ -29,16 +29,16 @@ export default function HowItWorks() {
   return (
     <section id="how" className="bg-paper py-section text-ink">
       <div className="wrap">
-        <div className="mb-[46px] flex flex-wrap items-center gap-10">
-          <img src={asset('logo-dark.png')} alt={t('how.logoAlt')} className="h-auto w-[230px]" />
+        <div className="mb-11.5 flex flex-wrap items-center gap-10">
+          <img src={asset('logo-dark.png')} alt={t('how.logoAlt')} className="h-auto w-57.5" />
           <h2 className="text-h2">{t('how.title')}</h2>
         </div>
 
-        <ol className="m-0 grid list-none grid-cols-1 gap-[26px] p-0 sm:grid-cols-2 md:grid-cols-4">
+        <ol className="m-0 grid list-none grid-cols-1 gap-6.5 p-0 sm:grid-cols-2 md:grid-cols-4">
           {steps.map((s, i) => (
             <li key={s.title}>
               <motion.div
-                className="h-1.5 origin-left bg-brand rtl:origin-right"
+                className="h-1.5 origin-left bg-brand"
                 initial={{ scaleX: 0 }}
                 whileInView={{ scaleX: 1 }}
                 viewport={{ once: true, margin: '-60px' }}
@@ -51,7 +51,7 @@ export default function HowItWorks() {
           ))}
         </ol>
 
-        <div className="mt-[54px] grid grid-cols-1 gap-10 bg-ink p-6 text-paper sm:p-[34px] md:grid-cols-2">
+        <div className="mt-13.5 grid grid-cols-1 gap-10 bg-ink p-6 text-paper sm:p-8.5 md:grid-cols-2">
           <Checklist Icon={ClipboardCheck} title={t('how.bring.title')} items={t('how.bring.items', { returnObjects: true })} />
           <Checklist Icon={ShieldCheck} title={t('how.included.title')} items={t('how.included.items', { returnObjects: true })} />
         </div>
