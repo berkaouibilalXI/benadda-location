@@ -1,11 +1,19 @@
-﻿# Build the site and upload it by SFTP to bennada-dreamcar.com
+﻿# Build the site and upload it by FTPS (explicit TLS, port 21) to benadda-dreamcar.com
 # Runs on every push to `main`, or manually from the Actions tab ("Run workflow").
 #
-# Settings > Secrets and variables > Actions
-#   Variables: VITE_CARS_PROVIDER, VITE_SUPABASE_URL, VITE_SUPABASE_BUCKET
-#   Secrets:   VITE_SUPABASE_ANON_KEY, SFTP_HOST, SFTP_PORT, SFTP_USER, SFTP_PASSWORD, SFTP_REMOTE_PATH
+# GitHub: Settings > Secrets and variables > Actions
+#   Variables (tab "Variables"):
+#     FTP_SERVER          ftp.benadda-dreamcar.com
+#     FTP_USERNAME        deploytoroot@benadda-dreamcar.com
+#     FTP_SERVER_DIR      public_html/        (optional, this is the default; must end with /)
+#     VITE_CARS_PROVIDER  json
+#     VITE_SUPABASE_URL   https://YOUR-PROJECT.supabase.co
+#     VITE_SUPABASE_BUCKET  Location
+#   Secrets (tab "Secrets"):
+#     FTP_PASSWORD
+#     VITE_SUPABASE_ANON_KEY
 
-name: Deploy to bennada-dreamcar.com
+name: Deploy to benadda-dreamcar.com
 
 on:
   push:
@@ -30,14 +38,13 @@ jobs:
 
       - name: Check deploy settings
         env:
-          SFTP_HOST: ${{ secrets.SFTP_HOST }}
-          SFTP_USER: ${{ secrets.SFTP_USER }}
-          SFTP_PASSWORD: ${{ secrets.SFTP_PASSWORD }}
-          SFTP_REMOTE_PATH: ${{ secrets.SFTP_REMOTE_PATH }}
+          FTP_SERVER: ${{ vars.FTP_SERVER }}
+          FTP_USERNAME: ${{ vars.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
         run: |
           missing=0
-          for v in SFTP_HOST SFTP_USER SFTP_PASSWORD SFTP_REMOTE_PATH; do
-            if [ -z "${!v}" ]; then echo "::error::Missing secret $v"; missing=1; fi
+          for v in FTP_SERVER FTP_USERNAME FTP_PASSWORD; do
+            if [ -z "${!v}" ]; then echo "::error::Missing $v (see the comment at the top of deploy.yml)"; missing=1; fi
           done
           [ "$missing" = 0 ] || exit 1
 
@@ -67,18 +74,29 @@ jobs:
           VITE_SUPABASE_BUCKET: ${{ vars.VITE_SUPABASE_BUCKET }}
           VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
 
-      - name: Upload dist/ by SFTP
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+      - name: Check the FTP server is reachable from GitHub
+        env:
+          FTP_SERVER: ${{ vars.FTP_SERVER }}
+        run: |
+          if timeout 15 bash -c 'exec 3<>/dev/tcp/$FTP_SERVER/21'; then
+            echo "FTP port 21 is reachable."
+          else
+            echo "::error::Cannot reach $FTP_SERVER on port 21 from GitHub. Check FTP_SERVER (if you use Cloudflare, the ftp record must be DNS-only, or use the server IP) and that your host does not block GitHub IPs."
+            exit 1
+          fi
+
+      - name: Upload dist/ by FTPS
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
-          server: ${{ secrets.SFTP_HOST }}
-          port: ${{ secrets.SFTP_PORT || '22' }}
-          username: ${{ secrets.SFTP_USER }}
-          password: ${{ secrets.SFTP_PASSWORD }}
-          # Key login instead of a password: remove `password` above and use
-          # ssh_private_key: ${{ secrets.SFTP_PRIVATE_KEY }}
-          sftp_only: true # host only accepts SFTP (no shell)
-          local_path: './dist/*'
-          remote_path: ${{ secrets.SFTP_REMOTE_PATH }}
-          # DANGER: deletes everything in remote_path before uploading. Only enable
-          # if that folder holds nothing but this site.
-          # delete_remote_files: true
+          server: ${{ vars.FTP_SERVER }}
+          port: 21
+          protocol: ftps # explicit FTPS (FTP + TLS), what cPanel offers on port 21
+          username: ${{ vars.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./dist/
+          # Web root of the account. The FTP account's folder is /home/gmzrkfea, so the site lives in public_html/.
+          server-dir: ${{ vars.FTP_SERVER_DIR || 'public_html/' }}
+          # "loose" accepts the host's certificate even if it is issued for the server name instead of
+          # ftp.benadda-dreamcar.com (common on shared hosting). Try "strict" if your host's certificate covers it.
+          security: loose
+          # DANGER: never enable `dangerous-clean-slate`. It deletes EVERYTHING in server-dir.
