@@ -17,7 +17,7 @@
       "fr": "Gris",
       "ar": "رمادي"
     },
-    "pricePerDay": 7000,
+    "pricePerDay": 10000,
     "available": true,
     "imagesFolder": "Doblo/Grise",
     "images": []
@@ -40,7 +40,7 @@
       "fr": "Blanc",
       "ar": "أبيض"
     },
-    "pricePerDay": 7000,
+    "pricePerDay": 10000,
     "available": true,
     "imagesFolder": "Doblo/Blanche",
     "images": []
