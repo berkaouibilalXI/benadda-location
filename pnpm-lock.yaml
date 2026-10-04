@@ -8,6 +8,15 @@ importers:
 
   .:
     dependencies:
+      '@lineiconshq/free-icons':
+        specifier: ^1.0.7
+        version: 1.0.7
+      '@lineiconshq/react-lineicons':
+        specifier: ^1.0.5
+        version: 1.0.5(react@19.3.0)
+      '@tabler/icons-react':
+        specifier: ^3.48.0
+        version: 3.48.0(react@19.3.0)
       '@tailwindcss/vite':
         specifier: ^4.3.3
         version: 4.3.3(vite@8.3.2(@types/node@26.6.4)(jiti@2.7.0))
@@ -76,6 +85,19 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
+
+  '@lineiconshq/free-icons@0.0.1':
+    resolution: {integrity: sha512-fnWSSjIv/4vojAKsBZXluhMRr1LIb5p85IzXK0Dh27KF9qXxz89HZJrnvXH71ZqMCP+NFzo/xh0dJsv8PT+3xg==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+
+  '@lineiconshq/free-icons@1.0.7':
+    resolution: {integrity: sha512-HfD3qUojTD2PYLXpHBl58IhyZyfCQaLJUIjkTodXZVYXrMHoKjEKAalNRQ0IGWU50WsRoYI59W+Y3pcFGHFSVg==}
+
+  '@lineiconshq/react-lineicons@1.0.5':
+    resolution: {integrity: sha512-GfUBSMLoL7siDOmVwDTTGwGCREu7Q/g7PAzqoMII+SF6ZWQS3ZfTLupNcQkTx4R6+mTibz5OIoWHCseVF8WsMQ==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
   '@oxc-project/types@0.152.0':
     resolution: {integrity: sha512-oM/5rLBm2tPkg0iBgkH/FOeR3PCDpY19GTgAZjMFM8h9WI9VW7cLgzp6nwtarYKmovavIQZ+Fe/RKX/8C8O/Rw==}
@@ -286,6 +308,14 @@ packages:
 
   '@rolldown/pluginutils@1.0.1':
     resolution: {integrity: sha512-2j9bGt5Jh8hj+vPtgzPtl72j0yRxHAyumoo6TNfAjsLB04UtpSvPbPcDcBMxz7n+9CYB0c1GxQFxYRg2jimqGw==}
+
+  '@tabler/icons-react@3.48.0':
+    resolution: {integrity: sha512-OCeAlpaWHEMV+EsgdVeGQ3YuKfmfnThZhc++CaZ/ujYzi5+/DONDQlX4OGvH1ikYhIfmc0grI4otJgHy7QAvng==}
+    peerDependencies:
+      react: '>= 16'
+
+  '@tabler/icons@3.48.0':
+    resolution: {integrity: sha512-lQk06gVHNVBnJp0UOgtth54mcZBJM7rdYKsAxKOProj1bbSAx+/xiuOWfHlyvgdL3M+Y+I0HINrjHa3ygp8eXQ==}
 
   '@tailwindcss/node@4.3.3':
     resolution: {integrity: sha512-/T8IKEsf9VTU6tLjgC7+sv2mOPtQxzE2jMw7u4Tt40Tx+QSZxpzh95/H6cMKoja9XuW7iMdLJYBB0o9G1CaAgg==}
@@ -626,6 +656,9 @@ packages:
   magic-string@0.30.21:
     resolution: {integrity: sha512-vd2F4YUyEXKGcLHoq+TEyCjxueSeHnFxyyjNp80yg0XV4vUhnDer/lvvlqM/arB5bXQN5K2/3oinyCRyx8T2CQ==}
 
+  meilisearch@0.53.0:
+    resolution: {integrity: sha512-nG4VXbEOSzUmtbfsgOo+t6yX1ECEgXaT4hC0ap9MBpQGK5xwT+NWYDENYsKWR75cVaWaAqva+ok4zHlgtdXlLw==}
+
   motion-dom@14.0.0:
     resolution: {integrity: sha512-aU3ApXo1yTpeUi3JU+jbDk2TELjxPE3MbBMUP7nZHlARb6RweJK+ojmLjpuB0YsY6zhbBl1YWGo8LMsI1/Llqw==}
 
@@ -786,6 +819,19 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.6.0
 
+  '@lineiconshq/free-icons@0.0.1(react@19.3.0)':
+    dependencies:
+      react: 19.3.0
+
+  '@lineiconshq/free-icons@1.0.7':
+    dependencies:
+      meilisearch: 0.53.0
+
+  '@lineiconshq/react-lineicons@1.0.5(react@19.3.0)':
+    dependencies:
+      '@lineiconshq/free-icons': 0.0.1(react@19.3.0)
+      react: 19.3.0
+
   '@oxc-project/types@0.152.0': {}
 
   '@oxlint/binding-android-arm-eabi@1.86.0':
@@ -891,6 +937,13 @@ snapshots:
     optional: true
 
   '@rolldown/pluginutils@1.0.1': {}
+
+  '@tabler/icons-react@3.48.0(react@19.3.0)':
+    dependencies:
+      '@tabler/icons': 3.48.0
+      react: 19.3.0
+
+  '@tabler/icons@3.48.0': {}
 
   '@tailwindcss/node@4.3.3':
     dependencies:
@@ -1134,6 +1187,8 @@ snapshots:
   magic-string@0.30.21:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.6.0
+
+  meilisearch@0.53.0: {}
 
   motion-dom@14.0.0:
     dependencies:

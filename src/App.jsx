@@ -35,7 +35,7 @@ export default function App() {
         <HowItWorks />
         <Reserve cars={cars} />
       </main>
-      {/* <Footer /> */}
+      <Footer />
     </BookingProvider>
   )
 }
