@@ -1,0 +1,84 @@
+﻿# Build the site and upload it by SFTP to bennada-dreamcar.com
+# Runs on every push to `main`, or manually from the Actions tab ("Run workflow").
+#
+# Settings > Secrets and variables > Actions
+#   Variables: VITE_CARS_PROVIDER, VITE_SUPABASE_URL, VITE_SUPABASE_BUCKET
+#   Secrets:   VITE_SUPABASE_ANON_KEY, SFTP_HOST, SFTP_PORT, SFTP_USER, SFTP_PASSWORD, SFTP_REMOTE_PATH
+
+name: Deploy to bennada-dreamcar.com
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Never run two deploys at once (they would upload over each other).
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Check deploy settings
+        env:
+          SFTP_HOST: ${{ secrets.SFTP_HOST }}
+          SFTP_USER: ${{ secrets.SFTP_USER }}
+          SFTP_PASSWORD: ${{ secrets.SFTP_PASSWORD }}
+          SFTP_REMOTE_PATH: ${{ secrets.SFTP_REMOTE_PATH }}
+        run: |
+          missing=0
+          for v in SFTP_HOST SFTP_USER SFTP_PASSWORD SFTP_REMOTE_PATH; do
+            if [ -z "${!v}" ]; then echo "::error::Missing secret $v"; missing=1; fi
+          done
+          [ "$missing" = 0 ] || exit 1
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          # Use the major shown by `pnpm -v` on your machine.
+          # Delete this line if package.json has a "packageManager" field.
+          version: 10
+
+      - name: Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # Vite bakes VITE_* values into the JS at build time, so they must exist HERE.
+      # They end up public in the browser: use the anon/publishable key, never service_role.
+      - name: Build
+        run: pnpm build
+        env:
+          VITE_CARS_PROVIDER: ${{ vars.VITE_CARS_PROVIDER }}
+          VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_BUCKET: ${{ vars.VITE_SUPABASE_BUCKET }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+
+      - name: Upload dist/ by SFTP
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+        with:
+          server: ${{ secrets.SFTP_HOST }}
+          port: ${{ secrets.SFTP_PORT || '22' }}
+          username: ${{ secrets.SFTP_USER }}
+          password: ${{ secrets.SFTP_PASSWORD }}
+          # Key login instead of a password: remove `password` above and use
+          # ssh_private_key: ${{ secrets.SFTP_PRIVATE_KEY }}
+          sftp_only: true # host only accepts SFTP (no shell)
+          local_path: './dist/*'
+          remote_path: ${{ secrets.SFTP_REMOTE_PATH }}
+          # DANGER: deletes everything in remote_path before uploading. Only enable
+          # if that folder holds nothing but this site.
+          # delete_remote_files: true
