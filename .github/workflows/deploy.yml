@@ -98,5 +98,5 @@ jobs:
           server-dir: ${{ vars.FTP_SERVER_DIR || 'public_html/' }}
           # "loose" accepts the host's certificate even if it is issued for the server name instead of
           # ftp.benadda-dreamcar.com (common on shared hosting). Try "strict" if your host's certificate covers it.
-          security: loose
+          security: strict
           # DANGER: never enable `dangerous-clean-slate`. It deletes EVERYTHING in server-dir.
