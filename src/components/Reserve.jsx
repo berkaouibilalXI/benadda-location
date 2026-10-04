@@ -105,7 +105,7 @@ export default function Reserve({ cars }) {
                 name="days"
                 type="number"
                 inputMode="numeric"
-                min="1"
+                min="3"
                 max={site.maxDays}
                 required
                 value={form.days}
@@ -191,7 +191,7 @@ export default function Reserve({ cars }) {
 
             <div
               dir={getLanguage(msgLang).dir}
-              className="space-y-0.5 break-words border-s-4 border-brand bg-field p-4 text-[15px] leading-relaxed"
+              className="space-y-0.5 wrap-break-word border-s-4 border-brand bg-field p-4 text-[15px] leading-relaxed"
             >
               {lines.map((line, i) => (
                 <motion.p
