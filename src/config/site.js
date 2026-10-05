@@ -6,4 +6,10 @@ export const site = {
   defaultLanguage: 'fr',
   whatsappLanguage: null,
   maxDays: 90,
+    vtc: {
+    url: 'https://vtc-oran.benadda-dreamcar.com/',
+    autoOpen: true,
+    autoOpenDelayMs: 3000,
+  },
+
 }

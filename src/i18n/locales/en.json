@@ -12,12 +12,37 @@
     "fleet": "Fleet",
     "how": "How it works",
     "reserve": "Reserve",
+    "vtc": "Private driver",
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
     "home": "Benadda Dreamcar home"
   },
   "header": {
     "book": "Book a car"
+  },
+  "vtc": {
+    "badge": "Private driver",
+    "close": "Close",
+    "imageAlt": "Benadda Dreamcar logo featuring a car",
+    "eyebrow": "Travel with ease",
+    "title": "Your private driver in Oran",
+    "text": "Book comfortable, reliable transport around Oran with a professional driver.",
+    "features": [
+      {
+        "title": "Airport transfers",
+        "text": "Convenient pick-up and drop-off for your journey."
+      },
+      {
+        "title": "Professional drivers",
+        "text": "Travel with an experienced, courteous driver."
+      },
+      {
+        "title": "Easy booking",
+        "text": "Arrange your ride in just a few steps."
+      }
+    ],
+    "later": "Maybe later",
+    "cta": "Explore the service"
   },
   "hero": {
     "title": "Pick the car. We hand over the keys.",

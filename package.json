@@ -12,6 +12,7 @@
   "dependencies": {
     "@lineiconshq/free-icons": "^1.0.7",
     "@lineiconshq/react-lineicons": "^1.0.5",
+    "@radix-ui/react-dialog": "^1.1.23",
     "@tabler/icons-react": "^3.48.0",
     "@tailwindcss/vite": "^4.3.3",
     "embla-carousel-react": "^8.6.0",

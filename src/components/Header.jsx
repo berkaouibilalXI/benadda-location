@@ -4,6 +4,7 @@ import { CalendarCheck, Menu, X } from 'lucide-react'
 import { useLang } from '../hooks/useLang'
 import { asset } from '../utils/asset'
 import LanguageSwitcher from './LanguageSwitcher'
+import { useVtc } from '../context/VtcContext'
 
 const links = [
   { href: '#fleet', key: 'nav.fleet' },
@@ -14,6 +15,14 @@ const links = [
 export default function Header() {
   const { t } = useLang()
   const [open, setOpen] = useState(false)
+  const { show: showVtc } = useVtc()
+
+  // Keeps href="#vtc" for right-click / no-JS, but opens the modal in place.
+  const openVtc = (e) => {
+    e.preventDefault()
+    setOpen(false)
+    showVtc()
+  }
 
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-ink">
@@ -29,6 +38,12 @@ export default function Header() {
                 {t(l.key)}
               </a>
             ))}
+            <a href="#vtc" onClick={openVtc} className="flex items-center gap-1.5 no-underline hover:text-brand">
+              {t('nav.vtc')}
+              <span className="bg-brand px-1.5 py-0.5 text-[10px] font-extrabold uppercase leading-none text-paper">
+                {t('vtc.badge')}
+              </span>
+            </a>
           </nav>
 
           <LanguageSwitcher />
@@ -72,8 +87,18 @@ export default function Header() {
                   {t(l.key)}
                 </a>
               ))}
+              <a
+                href="#vtc"
+                onClick={openVtc}
+                className="flex items-center gap-2 border-b border-line py-3 text-lg font-semibold no-underline"
+              >
+                {t('nav.vtc')}
+                <span className="bg-brand px-1.5 py-0.5 text-[10px] font-extrabold uppercase leading-none text-paper">
+                {t('vtc.badge')}
+              </span>
+              </a>
               <a href="#reserve" onClick={() => setOpen(false)} className="btn mt-4 self-start">
-                <CalendarCheck className="size-[18px]" aria-hidden="true" />
+                <CalendarCheck className="size-4.5" aria-hidden="true" />
                 {t('header.book')}
               </a>
             </div>

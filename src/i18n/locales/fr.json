@@ -12,12 +12,37 @@
     "fleet": "Flotte",
     "how": "Comment ça marche",
     "reserve": "Réserver",
+    "vtc": "Chauffeur privé",
     "openMenu": "Ouvrir le menu",
     "closeMenu": "Fermer le menu",
     "home": "Accueil Benadda Dreamcar"
   },
   "header": {
     "book": "Réserver une voiture"
+  },
+  "vtc": {
+    "badge": "Chauffeur privé",
+    "close": "Fermer",
+    "imageAlt": "Logo Benadda Dreamcar avec une voiture",
+    "eyebrow": "Voyagez en toute sérénité",
+    "title": "Votre chauffeur privé à Oran",
+    "text": "Réservez un transport confortable et fiable à Oran avec un chauffeur professionnel.",
+    "features": [
+      {
+        "title": "Transferts aéroport",
+        "text": "Prise en charge et dépose pratiques pour vos déplacements."
+      },
+      {
+        "title": "Chauffeurs professionnels",
+        "text": "Voyagez avec un chauffeur expérimenté et courtois."
+      },
+      {
+        "title": "Réservation facile",
+        "text": "Organisez votre trajet en quelques étapes."
+      }
+    ],
+    "later": "Plus tard",
+    "cta": "Découvrir le service"
   },
   "hero": {
     "title": "Choisissez la voiture. On vous remet les clés.",
