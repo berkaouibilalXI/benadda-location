@@ -1,12 +1,12 @@
 import * as Dialog from '@radix-ui/react-dialog'
 import { AnimatePresence, motion } from 'framer-motion'
-import { ArrowUpRight, Smartphone, UserCheck, PlaneTakeoff, X } from 'lucide-react'
+import { ArrowUpRight, Smartphone, UserCheck, PlaneTakeoff, X, Route } from 'lucide-react'
 import { site } from '../config/site'
 import { useVtc } from '../context/VtcContext'
 import { useLang } from '../hooks/useLang'
 import { asset } from '../utils/asset'
 
-const icons = [PlaneTakeoff, UserCheck, Smartphone]
+const icons = [PlaneTakeoff, UserCheck, Route ,Smartphone]
 
 export default function VtcModal() {
   const { t } = useLang()
