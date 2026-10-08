@@ -1,7 +1,10 @@
 {
   "meta": {
-    "title": "Benadda Dreamcar | Car rental",
-    "description": "Car rental in Algeria. Clean, serviced cars with clear daily rates."
+    "title": "Car rental in Oran | Benadda DreamCar",
+    "description": "Rent a car with Benadda DreamCar in Oran: wide choice of vehicles, simple booking and local support. Ask for your quote today.",
+    "ogTitle": "Benadda DreamCar — Car rental in Oran",
+    "ogDescription": "City cars, sedans and SUVs for rent. Book quickly by phone or WhatsApp.",
+    "imageAlt": "Benadda DreamCar, car rental in Oran"
   },
   "common": {
     "currency": "DA",
@@ -12,45 +15,17 @@
     "fleet": "Fleet",
     "how": "How it works",
     "reserve": "Reserve",
-    "vtc": "Private driver",
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
-    "home": "Benadda Dreamcar home"
+    "home": "Benadda Dreamcar home",
+    "vtc": "VTC"
   },
   "header": {
     "book": "Book a car"
   },
-  "vtc": {
-    "badge": "Private driver",
-    "close": "Close",
-    "imageAlt": "Benadda Dreamcar logo featuring a car",
-    "eyebrow": "Travel with ease",
-    "title": "Your private driver in Oran",
-    "text": "Book comfortable, reliable transport around Oran with a professional driver.",
-    "features": [
-      {
-        "title": "Airport transfers",
-        "text": "Convenient pick-up and drop-off for your journey."
-      },
-      {
-        "title": "Professional drivers",
-        "text": "Travel with an experienced, courteous driver."
-      },
-      {
-        "title": "Travelling across the city of Oran",
-        "text": "Whether you need to get to a meeting, a restaurant, or a hotel, we can take you there."
-      },
-      {
-        "title": "Easy booking",
-        "text": "Arrange your ride in just a few steps."
-      }
-    ],
-    "later": "Maybe later",
-    "cta": "Explore the service"
-  },
   "hero": {
     "title": "Pick the car. We hand over the keys.",
-    "text": "Clean, serviced cars from city runabouts to prestigeous coupes. Clear daily rates, a printed contract, and no surprises at the desk.",
+    "text": "Clean, serviced cars from city runabouts to sport coupes. Clear daily rates, a printed contract, and no surprises at the desk.",
     "seeFleet": "See the fleet",
     "getQuote": "Get a quote",
     "facts": [
@@ -66,7 +41,8 @@
         "title": "Same-day",
         "text": "Reserve in the morning, drive in the afternoon"
       }
-    ]
+    ],
+    "kicker": "Car rental in Oran"
   },
   "fleet": {
     "title": "The fleet",
@@ -79,16 +55,19 @@
     "error": "The fleet could not be loaded.",
     "retry": "Try again",
     "empty": "No cars in this class yet.",
+    "rateNote": "Rates are examples. Replace them with your current price list.",
     "prev": "Previous photo",
     "next": "Next photo",
     "goTo": "Show photo {{n}}",
-    "photoOf": "Photo {{current}} of {{total}}"
+    "photoOf": "Photo {{current}} of {{total}}",
+    "color": "Colour"
   },
   "categories": {
     "city": "City",
     "sedan": "Sedan",
     "suv": "SUV",
-    "sport": "Sport"
+    "sport": "Sport",
+    "family": "Family"
   },
   "specs": {
     "transmission": {
@@ -175,7 +154,32 @@
   },
   "footer": {
     "phone": "Phone",
-    "hours": "Daily 9AM to 10PM",
-    "note": "Replace these details with your own."
+    "hours": "Every day, 9:00 to 21:00",
+    "address": "Akid Lotfi, Oran, Algeria",
+    "whatsapp": "WhatsApp",
+    "vtcLink": "Airport transfer in Oran (VTC)"
+  },
+  "vtc": {
+    "badge": "New",
+    "eyebrow": "VTC Oran by Benadda Dreamcar",
+    "title": "Discover our new service",
+    "text": "Don't need a rental car today? Our new VTC service sends a professional driver to take you wherever you're going in Oran. Book online in a few minutes and travel in a clean, comfortable car.",
+    "features": [
+      {
+        "title": "Airport and city rides",
+        "text": "Transfers to and from the airport, and trips across Oran."
+      },
+      {
+        "title": "Professional drivers",
+        "text": "Courteous drivers who know the city."
+      },
+      {
+        "title": "Simple online booking",
+        "text": "Choose your ride and book on our VTC website."
+      }
+    ],
+    "cta": "Explore more",
+    "later": "Maybe later",
+    "close": "Close"
   }
 }

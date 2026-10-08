@@ -1,7 +1,10 @@
 {
   "meta": {
-    "title": "Benadda Dreamcar | Location de voitures",
-    "description": "Location de voitures en Algérie. Voitures propres et entretenues, tarifs journaliers clairs."
+    "title": "Location de voitures à Oran | Benadda DreamCar",
+    "description": "Louez une voiture récente avec Benadda DreamCar à Oran : large choix de véhicules, réservation simple et assistance locale. Demandez votre devis.",
+    "ogTitle": "Benadda DreamCar — Location de voitures à Oran",
+    "ogDescription": "Citadines, berlines et SUV à louer. Réservez rapidement par téléphone ou WhatsApp.",
+    "imageAlt": "Benadda DreamCar, location de voitures à Oran"
   },
   "common": {
     "currency": "DA",
@@ -12,45 +15,17 @@
     "fleet": "Flotte",
     "how": "Comment ça marche",
     "reserve": "Réserver",
-    "vtc": "Chauffeur privé",
     "openMenu": "Ouvrir le menu",
     "closeMenu": "Fermer le menu",
-    "home": "Accueil Benadda Dreamcar"
+    "home": "Accueil Benadda Dreamcar",
+    "vtc": "VTC"
   },
   "header": {
     "book": "Réserver une voiture"
   },
-  "vtc": {
-    "badge": "Chauffeur privé",
-    "close": "Fermer",
-    "imageAlt": "Logo Benadda Dreamcar avec une voiture",
-    "eyebrow": "Voyagez en toute sérénité",
-    "title": "Votre chauffeur privé à Oran",
-    "text": "Réservez un transport confortable et fiable à Oran avec un chauffeur professionnel.",
-    "features": [
-      {
-        "title": "Transferts aéroport",
-        "text": "Prise en charge et dépose pratiques pour vos déplacements."
-      },
-      {
-        "title": "Chauffeurs professionnels",
-        "text": "Voyagez avec un chauffeur expérimenté et courtois."
-      },
-      {
-        "title": "Déplacements dans la ville d'Oran",
-        "text": "Que vous ayez besoin de vous rendre à une réunion, un restaurant ou un hôtel, nous pouvons vous y conduire."
-      },
-      {
-        "title": "Réservation facile",
-        "text": "Organisez votre trajet en quelques étapes."
-      }
-    ],
-    "later": "Plus tard",
-    "cta": "Découvrir le service"
-  },
   "hero": {
     "title": "Choisissez la voiture. On vous remet les clés.",
-    "text": "Des voitures propres et entretenues, de la citadine au coupés prestigieuses. Des tarifs journaliers clairs, un contrat imprimé et aucune surprise au comptoir.",
+    "text": "Des voitures propres et entretenues, de la citadine au coupé sport. Des tarifs journaliers clairs, un contrat imprimé et aucune surprise au comptoir.",
     "seeFleet": "Voir la flotte",
     "getQuote": "Obtenir un devis",
     "facts": [
@@ -66,7 +41,8 @@
         "title": "Le jour même",
         "text": "Réservez le matin, roulez l'après-midi"
       }
-    ]
+    ],
+    "kicker": "Location de voitures à Oran"
   },
   "fleet": {
     "title": "La flotte",
@@ -79,16 +55,19 @@
     "error": "Impossible de charger la flotte.",
     "retry": "Réessayer",
     "empty": "Aucune voiture dans cette catégorie pour l'instant.",
+    "rateNote": "Les tarifs sont des exemples. Remplacez-les par votre grille tarifaire actuelle.",
     "prev": "Photo précédente",
     "next": "Photo suivante",
     "goTo": "Afficher la photo {{n}}",
-    "photoOf": "Photo {{current}} sur {{total}}"
+    "photoOf": "Photo {{current}} sur {{total}}",
+    "color": "Couleur"
   },
   "categories": {
     "city": "Citadines",
     "sedan": "Berlines",
     "suv": "SUV",
-    "sport": "Sportives"
+    "sport": "Sportives",
+    "family": "Familiales"
   },
   "specs": {
     "transmission": {
@@ -175,7 +154,32 @@
   },
   "footer": {
     "phone": "Téléphone",
-    "hours": "Tous les jours de 9h à 22h",
-    "note": "Remplacez ces informations par les vôtres."
+    "hours": "Tous les jours de 9h à 21h",
+    "address": "Akid Lotfi, Oran, Algérie",
+    "whatsapp": "WhatsApp",
+    "vtcLink": "Transfert aéroport à Oran (VTC)"
+  },
+  "vtc": {
+    "badge": "Nouveau",
+    "eyebrow": "VTC Oran par Benadda Dreamcar",
+    "title": "Découvrez notre nouveau service",
+    "text": "Pas besoin d'une voiture de location aujourd'hui ? Notre nouveau service VTC envoie un chauffeur professionnel pour vous emmener où vous voulez à Oran. Réservez en ligne en quelques minutes et voyagez dans une voiture propre et confortable.",
+    "features": [
+      {
+        "title": "Trajets aéroport et ville",
+        "text": "Transferts vers et depuis l'aéroport, et trajets dans tout Oran."
+      },
+      {
+        "title": "Chauffeurs professionnels",
+        "text": "Des chauffeurs courtois qui connaissent la ville."
+      },
+      {
+        "title": "Réservation en ligne simple",
+        "text": "Choisissez votre trajet et réservez sur notre site VTC."
+      }
+    ],
+    "cta": "En savoir plus",
+    "later": "Plus tard",
+    "close": "Fermer"
   }
 }

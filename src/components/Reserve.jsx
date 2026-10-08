@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { AnimatePresence, motion } from 'framer-motion'
 import { CalendarDays, MessageCircle, Send } from 'lucide-react'
@@ -25,6 +25,11 @@ export default function Reserve({ cars }) {
   const { i18n } = useTranslation()
   const { form, setField, car } = useBooking()
 
+  // Earliest pick-up date = the visitor's today (not the day the site was built)
+  const [minDate, setMinDate] = useState(undefined)
+  useEffect(() => setMinDate(todayISO()), [])
+
+  // The message is written in the visitor's language unless site.whatsappLanguage says otherwise.
   const msgLang = site.whatsappLanguage || code
   const tMsg = useMemo(() => i18n.getFixedT(msgLang), [i18n, msgLang, code])
   const fMsg = useMemo(() => makeFormatters(msgLang), [msgLang])
@@ -35,6 +40,7 @@ export default function Reserve({ cars }) {
   const total = car && days ? car.pricePerDay * days : 0
   const currency = t('common.currency')
 
+  // Rebuilt on every keystroke, so the preview and the WhatsApp link are always current.
   const lines = useMemo(
     () =>
       buildWhatsAppMessage(tMsg, {
@@ -47,7 +53,7 @@ export default function Reserve({ cars }) {
         total: total ? `${fMsg.number(total)} ${tMsg('common.currency')}` : '',
         notes: form.notes,
       }),
-    [tMsg, fMsg, msgLang, form.name, form.phone, form.notes, car, days, form.startDate, total],
+    [tMsg, fMsg, msgLang, form.name, form.phone, form.notes, car, days, form.startDate, total], // eslint-disable-line react-hooks/exhaustive-deps
   )
 
   const onSubmit = (e) => {
@@ -105,7 +111,7 @@ export default function Reserve({ cars }) {
                 name="days"
                 type="number"
                 inputMode="numeric"
-                min="3"
+                min="1"
                 max={site.maxDays}
                 required
                 value={form.days}
@@ -117,7 +123,7 @@ export default function Reserve({ cars }) {
                 name="start"
                 type="date"
                 required
-                min={todayISO()}
+                min={minDate}
                 value={form.startDate}
                 onChange={(e) => setField('startDate', e.target.value)}
               />
@@ -173,7 +179,7 @@ export default function Reserve({ cars }) {
 
             <div className="mb-4 flex items-baseline justify-between gap-3">
               <span className="text-[15px] text-mute">{t('reserve.total')}</span>
-              <div className="relative h-7.25 overflow-hidden text-end">
+              <div className="relative h-[29px] overflow-hidden text-end">
                 <AnimatePresence mode="popLayout" initial={false}>
                   <motion.b
                     key={total}
@@ -191,7 +197,7 @@ export default function Reserve({ cars }) {
 
             <div
               dir={getLanguage(msgLang).dir}
-              className="space-y-0.5 wrap-break-word border-s-4 border-brand bg-field p-4 text-[15px] leading-relaxed"
+              className="space-y-0.5 break-words border-s-4 border-brand bg-field p-4 text-[15px] leading-relaxed"
             >
               {lines.map((line, i) => (
                 <motion.p
