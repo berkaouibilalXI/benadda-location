@@ -5,7 +5,6 @@ export const site = {
   phoneDisplay: '07 92 21 03 97',
   phoneHref: '+213792210397',
   whatsappNumber: '213792210397',
-
   address: { street: 'Akid Lotfi', locality: 'Oran', region: 'Oran', country: 'DZ' },
   hours: {
     days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
