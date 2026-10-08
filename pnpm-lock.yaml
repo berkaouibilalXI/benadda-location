@@ -32,9 +32,6 @@ importers:
       i18next:
         specifier: ^26.4.2
         version: 26.4.2
-      i18next-browser-languagedetector:
-        specifier: ^8.2.1
-        version: 8.2.1
       lucide-react:
         specifier: ^1.50.0
         version: 1.50.0(@types/react@19.3.0)(react@19.3.0)
@@ -664,9 +661,6 @@ packages:
 
   html-parse-stringify@4.0.1:
     resolution: {integrity: sha512-0zHsZJrK7S3K2aucXWL6ycoYJ/iNtIcFHC/nYQgFklPtrv5LpJctIiSCroWZWeuoXvuyFdzp6KzjJQ+OT5MfFw==}
-
-  i18next-browser-languagedetector@8.2.1:
-    resolution: {integrity: sha512-bZg8+4bdmaOiApD7N7BPT9W8MLZG+nPTOFlLiJiT8uzKXFjhxw4v2ierCXOwB5sFDMtuA5G4kgYZ0AznZxQ/cw==}
 
   i18next@26.4.2:
     resolution: {integrity: sha512-RX+R0VLg13IbvRuJSxnqykUFS9vQZTl8wYpWPCIUDWVrSGjsQywB5Y+pjzrkboxGAuYfJZVH1InFTdgBdxq6ug==}
@@ -1442,10 +1436,6 @@ snapshots:
   graceful-fs@4.2.11: {}
 
   html-parse-stringify@4.0.1: {}
-
-  i18next-browser-languagedetector@8.2.1:
-    dependencies:
-      '@babel/runtime': 7.29.7
 
   i18next@26.4.2: {}
 

@@ -1,14 +1,17 @@
 import React from 'react'
-import ReactDOM from 'react-dom/client'
-import { MotionConfig } from 'framer-motion'
-import './i18n'
+import { createRoot, hydrateRoot } from 'react-dom/client'
 import './index.css'
-import App from './App.jsx'
+import AppRoot from './AppRoot.jsx'
+import { createI18n, langFromPath } from './i18n'
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+// The language comes from the URL (/ = French, /en/, /ar/), exactly like in the pre-rendered HTML.
+const i18n = createI18n(langFromPath(window.location.pathname))
+const app = (
   <React.StrictMode>
-    <MotionConfig reducedMotion="user">
-      <App />
-    </MotionConfig>
-  </React.StrictMode>,
+    <AppRoot i18n={i18n} />
+  </React.StrictMode>
 )
+
+const rootEl = document.getElementById('root')
+if (rootEl.firstElementChild) hydrateRoot(rootEl, app)
+else createRoot(rootEl).render(app)

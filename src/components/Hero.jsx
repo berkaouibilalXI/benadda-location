@@ -1,10 +1,12 @@
 import { motion } from 'framer-motion'
 import { useLang } from '../hooks/useLang'
 
+// One orchestrated entrance: the gauge draws itself, then the copy rises in.
 const column = { hidden: {}, show: { transition: { staggerChildren: 0.09, delayChildren: 0.2 } } }
 const rise = {
-  hidden: { opacity: 0, y: 18 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+  // No opacity fade here on purpose: the text must be visible in the pre-rendered HTML (SEO + fast first paint)
+  hidden: { y: 18 },
+  show: { y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
 }
 
 const arcs = [
@@ -20,7 +22,7 @@ function Gauge() {
       fill="none"
       stroke="#E51D23"
       aria-hidden="true"
-      className="pointer-events-none absolute -top-22.5 end-[-140px] w-[760px] max-w-none opacity-95 rtl:-scale-x-100 max-md:-top-[60px] max-md:end-[-190px] max-md:w-[520px] max-md:opacity-55"
+      className="pointer-events-none absolute -top-[90px] end-[-140px] w-[760px] max-w-none opacity-95 rtl:-scale-x-100 max-md:-top-[60px] max-md:end-[-190px] max-md:w-[520px] max-md:opacity-55"
     >
       {arcs.map((a) => (
         <motion.path
@@ -45,6 +47,9 @@ export default function Hero() {
       <Gauge />
       <motion.div variants={column} initial="hidden" animate="show" className="wrap relative">
         <motion.h1 variants={rise} className="max-w-[9.5em] text-display">
+          <span className="mb-4 block text-[clamp(15px,2.2vw,22px)] leading-tight tracking-[0.12em] text-brand rtl:tracking-normal">
+            {t('hero.kicker')}
+          </span>
           {t('hero.title')}
         </motion.h1>
         <motion.p variants={rise} className="my-[26px] mb-8 max-w-[30em] text-[19px] text-soft">
@@ -64,7 +69,7 @@ export default function Hero() {
           className="mt-[70px] grid grid-cols-1 border-t border-line md:grid-cols-3"
         >
           {facts.map((f) => (
-            <div key={f.title} className="pe-4.5 pt-5">
+            <div key={f.title} className="pe-[18px] pt-5">
               <b className="block text-stat font-black stretch-125 text-brand">{f.title}</b>
               <span className="text-[15px] text-mute">{f.text}</span>
             </div>

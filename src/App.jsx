@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { BookingProvider } from './context/BookingContext'
+import { VtcProvider } from './context/VtcContext'
 import { useCars } from './hooks/useCars'
 import { useLang } from './hooks/useLang'
 import Header from './components/Header'
@@ -8,8 +9,7 @@ import Fleet from './components/Fleet'
 import HowItWorks from './components/HowItWorks'
 import Reserve from './components/Reserve'
 import Footer from './components/Footer'
-import VtcModal from './components/Vtcmodal.jsx'
-import { VtcProvider } from './context/VtcContext'
+import VtcModal from './components/VtcModal'
 
 export default function App() {
   const { cars, status, reload } = useCars()
@@ -28,7 +28,7 @@ export default function App() {
       <BookingProvider cars={cars}>
         <a
           href="#top"
-          className="sr-only focus:not-sr-only focus:fixed focus:inset-s-3 focus:top-3 focus:z-60 focus:bg-brand focus:px-4 focus:py-2"
+          className="sr-only focus:not-sr-only focus:fixed focus:start-3 focus:top-3 focus:z-[60] focus:bg-brand focus:px-4 focus:py-2"
         >
           {t('common.skip')}
         </a>
