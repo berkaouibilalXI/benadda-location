@@ -1,16 +1,23 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { site } from '../config/site'
 
+// The modal behaves like a sub-page: it lives at the URL hash "#vtc".
+//  - the link /#vtc opens it directly (shareable)
+//  - opening pushes a history entry, so the browser Back button closes it
+//  - closing removes the hash again
 const HASH = '#vtc'
+const SEEN_KEY = 'vtc-popup-seen'
+const DAY = 24 * 60 * 60 * 1000
 
 const VtcContext = createContext(null)
 const isOpenHash = () => window.location.hash === HASH
 
 export function VtcProvider({ children }) {
-  const [open, setOpen] = useState(isOpenHash)
+  const [open, setOpen] = useState(false)
 
-  // Back / forward buttons and manual hash edits keep the modal in sync with the URL.
+  // Deep link (/#vtc) is read after mount; back / forward buttons and hash edits keep it in sync.
   useEffect(() => {
+    setOpen(isOpenHash())
     const sync = () => setOpen(isOpenHash())
     window.addEventListener('popstate', sync)
     window.addEventListener('hashchange', sync)
@@ -38,11 +45,31 @@ export function VtcProvider({ children }) {
     }
   }, [])
 
-  // Open on every page load after the configured delay.
+  // Remember that the visitor has seen it, however it was opened.
   useEffect(() => {
-    const { autoOpen, autoOpenDelayMs } = site.vtc
+    if (!open) return
+    try {
+      localStorage.setItem(SEEN_KEY, String(Date.now()))
+    } catch {
+      /* storage blocked: it will simply pop up again next time */
+    }
+  }, [open])
+
+  // Pop up once after a short delay, unless seen recently or the visitor is typing in the form.
+  useEffect(() => {
+    const { autoOpen, autoOpenDelayMs, rememberDays } = site.vtc
     if (!autoOpen || isOpenHash()) return
-    const id = setTimeout(show, autoOpenDelayMs)
+    let last = 0
+    try {
+      last = Number(localStorage.getItem(SEEN_KEY)) || 0
+    } catch {
+      /* ignore */
+    }
+    if (Date.now() - last < rememberDays * DAY) return
+    const id = setTimeout(() => {
+      if (document.activeElement?.matches?.('input, select, textarea')) return
+      show()
+    }, autoOpenDelayMs)
     return () => clearTimeout(id)
   }, [show])
 
