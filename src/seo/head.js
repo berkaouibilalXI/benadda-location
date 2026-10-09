@@ -48,6 +48,12 @@ export function buildHead(i18n) {
   const tags = [
     `<title>${esc(t('meta.title'))}</title>`,
     `<meta name="description" content="${esc(t('meta.description'))}" />`,
+    `<link rel="icon" href="/favicon.ico" sizes="any" />`,
+    `<link rel="icon" type="image/svg+xml" href="/favicon.svg" />`,
+    `<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />`,
+    `<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512.png" />`,
+    `<link rel="apple-touch-icon" href="/apple-touch-icon.png" />`,
+    `<link rel="manifest" href="/site.webmanifest" />`,
     `<link rel="canonical" href="${url}" />`,
     ...languages.map((l) => `<link rel="alternate" hreflang="${l.code}" href="${pageUrl(l.code)}" />`),
     `<link rel="alternate" hreflang="x-default" href="${pageUrl(defaultLanguage)}" />`,
