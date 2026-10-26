@@ -15,6 +15,8 @@ export default function Footer() {
         <img
           src={asset('logo.png')}
           alt={site.name}
+          width="520"
+          height="359"
           className="h-[72px] w-auto"
         />
 

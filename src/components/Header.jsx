@@ -30,7 +30,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 border-b border-line bg-ink">
       <div className="wrap flex h-header items-center gap-5">
         <a href="#top" aria-label={t('nav.home')} className="shrink-0">
-          <img src={asset('logo.png')} alt="Benadda Dreamcar" className="h-11 w-auto" />
+          <img src={asset('logo.png')} alt="Benadda Dreamcar" width="520" height="359" className="h-11 w-auto" />
         </a>
 
         <div className="ms-auto flex items-center gap-4 md:gap-6">

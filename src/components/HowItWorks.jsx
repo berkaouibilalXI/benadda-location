@@ -30,7 +30,7 @@ export default function HowItWorks() {
     <section id="how" className="bg-paper py-section text-ink">
       <div className="wrap">
         <div className="mb-11.5 flex flex-wrap items-center gap-10">
-          <img src={asset('logo-dark.png')} alt={t('how.logoAlt')} className="h-auto w-57.5" />
+          <img src={asset('logo-dark.png')} alt={t('how.logoAlt')} width="520" height="359" className="h-auto w-57.5" />
           <h2 className="text-h2">{t('how.title')}</h2>
         </div>
 

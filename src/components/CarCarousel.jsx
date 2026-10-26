@@ -20,6 +20,13 @@ export default function CarCarousel({ images = [], label }) {
 
   const [selected, setSelected] = useState(0)
 
+  // Only the first photo of each car is downloaded up front. The others are fetched when the visitor
+  // shows interest (touch / hover / focus / arrows / dots). A car with 8 photos no longer costs 8 downloads
+  // on every page view — a car page used to weigh ~2.6 MB, almost all of it photos nobody had looked at yet.
+  const [warm, setWarm] = useState(false)
+  const [seen, setSeen] = useState(() => new Set(images.filter(Boolean).slice(0, 1)))
+  const showInterest = warm ? undefined : () => setWarm(true)
+
   useEffect(() => {
     if (!emblaApi) return
     const onSelect = () => setSelected(emblaApi.selectedScrollSnap())
@@ -40,6 +47,14 @@ export default function CarCarousel({ images = [], label }) {
     emblaApi?.reInit()
   }, [emblaApi, slides.length])
 
+  useEffect(() => {
+    const n = slides.length
+    if (!n) return
+    const wanted = [slides[Math.min(selected, n - 1)]]
+    if (warm && n > 1) wanted.push(slides[(selected + 1) % n], slides[(selected - 1 + n) % n])
+    setSeen((prev) => (wanted.every((src) => prev.has(src)) ? prev : new Set([...prev, ...wanted])))
+  }, [slides, selected, warm])
+
   if (slides.length === 0) {
     return <CarIllustration label={label} className="w-full max-md:w-42.5" />
   }
@@ -50,6 +65,9 @@ export default function CarCarousel({ images = [], label }) {
       aria-roledescription="carousel"
       aria-label={label}
       className="relative aspect-3/2 w-full select-none bg-field max-md:max-w-[320px]"
+      onPointerEnter={showInterest}
+      onTouchStart={showInterest}
+      onFocusCapture={showInterest}
     >
       <div ref={emblaRef} className="size-full overflow-hidden">
         <div
@@ -59,15 +77,19 @@ export default function CarCarousel({ images = [], label }) {
         >
           {slides.map((src, i) => (
             <div key={src} className="min-w-0 flex-[0_0_100%]">
-              <img
-                src={src}
-                alt={multiple ? `${label} (${i + 1}/${slides.length})` : label}
-                loading="lazy"
-                decoding="async"
-                draggable={false}
-                onError={() => setFailed((prev) => new Set(prev).add(src))}
-                className="size-full object-cover"
-              />
+              {seen.has(src) ? (
+                <img
+                  src={src}
+                  alt={multiple ? `${label} (${i + 1}/${slides.length})` : label}
+                  loading="lazy"
+                  decoding="async"
+                  draggable={false}
+                  onError={() => setFailed((prev) => new Set(prev).add(src))}
+                  className="size-full object-cover"
+                />
+              ) : (
+                <div className="size-full" aria-hidden="true" />
+              )}
             </div>
           ))}
         </div>
@@ -90,7 +112,7 @@ export default function CarCarousel({ images = [], label }) {
             </button>
           ))}
 
-          <div className="absolute inset-x-0 bottom-1 flex justify-center">
+          <div className="absolute inset-x-0 bottom-0 flex justify-center">
             {slides.map((src, i) => (
               <button
                 key={src}
@@ -98,7 +120,7 @@ export default function CarCarousel({ images = [], label }) {
                 aria-label={t('fleet.goTo', { n: i + 1 })}
                 aria-current={i === selected}
                 onClick={() => emblaApi?.scrollTo(i)}
-                className="p-1.5"
+                className="grid h-6 min-w-6 place-items-center px-1"
               >
                 <span
                   className={`block h-1.5 transition-all ${

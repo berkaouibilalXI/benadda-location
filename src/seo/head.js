@@ -65,7 +65,7 @@ function carJsonLd(car, code, t, url) {
     name,
     description: [name, ...specs].join(' · '),
     category: t(`categories.${car.category}`, { defaultValue: car.category }),
-    ...(car.image ? { image: car.image } : {}),
+    ...(car.images?.length ? { image: car.images.slice(0, 6) } : car.image ? { image: car.image } : {}),
     offers: {
       '@type': 'Offer',
       url: `${url}#fleet`,

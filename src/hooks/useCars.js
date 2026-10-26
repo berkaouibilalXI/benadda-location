@@ -32,12 +32,20 @@ export function useCars(initialCars = null) {
   useEffect(() => {
     if (!initialCars) {
       load()
-    } else if (carsProvider !== 'json' || initialCars.some((c) => c.imagesFolder)) {
-      // Anything fetched from a remote source (Supabase data, or photos listed from a Supabase folder):
-      // quietly refresh, so new photos / prices / availability show up without waiting for the next build,
-      // exactly as before the pre-render step existed.
-      load({ silent: true })
+      return
     }
+    if (carsProvider === 'json' && !initialCars.some((c) => c.imagesFolder)) return
+
+    // Anything fetched from a remote source (Supabase data, or photos listed from a Supabase folder):
+    // quietly refresh, so new photos / prices / availability show up without waiting for the next build.
+    // It runs when the browser is idle, so it never competes with the first paint.
+    const run = () => load({ silent: true })
+    if ('requestIdleCallback' in window) {
+      const id = window.requestIdleCallback(run, { timeout: 4000 })
+      return () => window.cancelIdleCallback(id)
+    }
+    const id = setTimeout(run, 2000)
+    return () => clearTimeout(id)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
