@@ -67,7 +67,8 @@ export default function Fleet({ cars, status, reload }) {
 
         {status === 'ready' && (
           <div>
-            <AnimatePresence mode="popLayout">
+            {/* initial={false}: cars present at first render are drawn visible (they are in the pre-rendered HTML) */}
+            <AnimatePresence mode="popLayout" initial={false}>
               {visible.map((car) => (
                 <CarCard key={car.id} car={car} />
               ))}

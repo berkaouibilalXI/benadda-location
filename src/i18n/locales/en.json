@@ -181,5 +181,19 @@
     "cta": "Explore more",
     "later": "Maybe later",
     "close": "Close"
+  },
+  "faq": {
+    "title": "Frequently asked questions",
+    "q1": "How much does it cost to rent a car in Oran?",
+    "a1": "Our rates are fixed and charged per day, from {{price}} {{currency}} a day depending on the model. We confirm the rate, the deposit and the mileage limit in writing before you collect the keys.",
+    "a1NoPrice": "Our rates are fixed and charged per day, depending on the model. We confirm the rate, the deposit and the mileage limit in writing before you collect the keys.",
+    "q2": "What documents do I need to rent a car?",
+    "a2": "A valid driving licence held for at least two years, a national ID card or passport, and a deposit agreed when you book.",
+    "q3": "How do I book a car?",
+    "a3": "Pick a car and your dates in the booking form: your request is prepared as a WhatsApp message and we confirm availability. You can book in the morning and drive in the afternoon.",
+    "q4": "Where are you and what are your opening hours?",
+    "a4": "Address: {{address}}. Hours: {{hours}}.",
+    "q5": "Do you also offer a chauffeur?",
+    "a5": "Yes. Our VTC service sends a professional chauffeur for your transfers to or from the airport and your journeys around Oran."
   }
 }

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { CalendarCheck, Menu, X } from 'lucide-react'
 import { useLang } from '../hooks/useLang'
+import { vtcUrl } from '../config/site'
 import { asset } from '../utils/asset'
 import LanguageSwitcher from './LanguageSwitcher'
 import { useVtc } from '../context/VtcContext'
@@ -13,11 +14,12 @@ const links = [
 ]
 
 export default function Header() {
-  const { t } = useLang()
+  const { t, code } = useLang()
   const [open, setOpen] = useState(false)
   const { show: showVtc } = useVtc()
 
-  // Keeps href="#vtc" for right-click / no-JS, but opens the modal in place.
+  // The link points at the real VTC site (crawlable, middle-click and no-JS work);
+  // a normal click opens the preview modal in place instead.
   const openVtc = (e) => {
     e.preventDefault()
     setOpen(false)
@@ -38,7 +40,7 @@ export default function Header() {
                 {t(l.key)}
               </a>
             ))}
-            <a href="#vtc" onClick={openVtc} className="flex items-center gap-1.5 no-underline hover:text-brand">
+            <a href={vtcUrl(code)} onClick={openVtc} className="flex items-center gap-1.5 no-underline hover:text-brand">
               {t('nav.vtc')}
               <span className="bg-brand px-1.5 py-0.5 text-[10px] font-extrabold uppercase leading-none text-paper">
                 {t('vtc.badge')}
@@ -88,7 +90,7 @@ export default function Header() {
                 </a>
               ))}
               <a
-                href="#vtc"
+                href={vtcUrl(code)}
                 onClick={openVtc}
                 className="flex items-center gap-2 border-b border-line py-3 text-lg font-semibold no-underline"
               >

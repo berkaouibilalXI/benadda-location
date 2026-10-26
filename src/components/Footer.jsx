@@ -1,12 +1,12 @@
-import { Clock, Mail, Phone } from 'lucide-react'
+import { Clock, Mail, Phone, PlaneTakeoff } from 'lucide-react'
 import { IconBrandInstagram } from '@tabler/icons-react'
 
-import { site } from '../config/site'
+import { site, vtcUrl } from '../config/site'
 import { useLang } from '../hooks/useLang'
 import { asset } from '../utils/asset'
 
 export default function Footer() {
-  const { t } = useLang()
+  const { t, code } = useLang()
 
   return (
     <footer className="border-t-[6px] border-brand bg-ink pb-[50px] pt-11 text-[15px] text-mute">
@@ -64,6 +64,20 @@ export default function Footer() {
               className="no-underline transition-colors hover:text-paper"
             >
               @benaddadreamcar
+            </a>
+          </li>
+
+          <li className="flex items-center gap-2">
+            <PlaneTakeoff
+              className="size-4 shrink-0"
+              aria-hidden="true"
+            />
+
+            <a
+              href={vtcUrl(code)}
+              className="no-underline transition-colors hover:text-paper"
+            >
+              {t('footer.vtcLink')}
             </a>
           </li>
 

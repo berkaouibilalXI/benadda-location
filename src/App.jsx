@@ -8,11 +8,12 @@ import Hero from './components/Hero'
 import Fleet from './components/Fleet'
 import HowItWorks from './components/HowItWorks'
 import Reserve from './components/Reserve'
+import Faq from './components/Faq'
 import Footer from './components/Footer'
 import VtcModal from './components/VtcModal'
 
-export default function App() {
-  const { cars, status, reload } = useCars()
+export default function App({ initialCars = null }) {
+  const { cars, status, reload } = useCars(initialCars)
   const { t, code, dir } = useLang()
 
   // Keep <html lang/dir> and the page title in sync with the chosen language
@@ -38,6 +39,7 @@ export default function App() {
           <Fleet cars={cars} status={status} reload={reload} />
           <HowItWorks />
           <Reserve cars={cars} />
+          <Faq cars={cars} />
         </main>
         <Footer />
         <VtcModal />

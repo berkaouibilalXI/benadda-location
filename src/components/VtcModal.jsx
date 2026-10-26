@@ -1,7 +1,7 @@
 import * as Dialog from '@radix-ui/react-dialog'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ArrowUpRight, Smartphone, UserCheck, PlaneTakeoff, X, Route } from 'lucide-react'
-import { site } from '../config/site'
+import { vtcUrl } from '../config/site'
 import { useVtc } from '../context/VtcContext'
 import { useLang } from '../hooks/useLang'
 import { asset } from '../utils/asset'
@@ -9,7 +9,7 @@ import { asset } from '../utils/asset'
 const icons = [PlaneTakeoff, UserCheck, Route ,Smartphone]
 
 export default function VtcModal() {
-  const { t } = useLang()
+  const { t, code } = useLang()
   const { open, hide } = useVtc()
   const translatedFeatures = t('vtc.features', { returnObjects: true })
   const features = Array.isArray(translatedFeatures) ? translatedFeatures : []
@@ -87,7 +87,7 @@ export default function VtcModal() {
 
                   <div className="mt-8 flex flex-wrap justify-end gap-3">
                     <Dialog.Close className="btn btn-ghost">{t('vtc.later')}</Dialog.Close>
-                    <a href={site.vtc.url} target="_blank" rel="noopener" className="btn">
+                    <a href={vtcUrl(code)} target="_blank" rel="noopener" className="btn">
                       {t('vtc.cta')}
                       <ArrowUpRight className="size-4.5 rtl:-scale-x-100" aria-hidden="true" />
                     </a>

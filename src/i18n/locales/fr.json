@@ -181,5 +181,19 @@
     "cta": "En savoir plus",
     "later": "Plus tard",
     "close": "Fermer"
+  },
+  "faq": {
+    "title": "Questions fréquentes",
+    "q1": "Combien coûte la location d’une voiture à Oran ?",
+    "a1": "Nos tarifs sont journaliers et fixes, à partir de {{price}} {{currency}} par jour selon le modèle. Nous vous confirmons par écrit le tarif, la caution et la limite de kilométrage avant la remise des clés.",
+    "a1NoPrice": "Nos tarifs sont journaliers et fixes, selon le modèle. Nous vous confirmons par écrit le tarif, la caution et la limite de kilométrage avant la remise des clés.",
+    "q2": "Quels documents faut-il pour louer une voiture ?",
+    "a2": "Un permis de conduire valide détenu depuis au moins deux ans, une carte d’identité nationale ou un passeport, et une caution convenue à la réservation.",
+    "q3": "Comment réserver une voiture ?",
+    "a3": "Choisissez une voiture et vos dates dans le formulaire de réservation : votre demande est préparée sous forme de message WhatsApp et nous vous confirmons la disponibilité. Vous pouvez réserver le matin et rouler l’après-midi.",
+    "q4": "Où nous trouver et à quelles heures ?",
+    "a4": "Adresse : {{address}}. Horaires : {{hours}}.",
+    "q5": "Proposez-vous aussi un chauffeur ?",
+    "a5": "Oui. Notre service VTC envoie un chauffeur professionnel pour vos transferts depuis ou vers l’aéroport et vos trajets dans Oran."
   }
 }

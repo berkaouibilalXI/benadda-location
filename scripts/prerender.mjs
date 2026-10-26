@@ -20,7 +20,7 @@ if (!hasHeadMarker || !hasHtmlMarker) {
 }
 
 // Fills the template for one language. Replacements use functions so "$" in the HTML is never misread.
-function fillTemplate({ html, head, lang, dir }) {
+function fillTemplate({ html, head, lang, dir }, cars) {
   let page = template.replace(/<html[^>]*>/i, () => `<html lang="${lang}" dir="${dir}">`)
 
   if (hasHeadMarker) {
@@ -39,17 +39,31 @@ function fillTemplate({ html, head, lang, dir }) {
   } else {
     throw new Error('Could not find <div id="root"></div> in dist/index.html')
   }
+  // Hand the exact fleet that was rendered to the browser, so hydration starts from identical data.
+  if (cars) {
+    const data = `<script>window.__CARS__=${JSON.stringify(cars).replace(/</g, '\\u003c')}</script>`
+    page = page.replace('</body>', () => `${data}\n  </body>`)
+  }
   return page
 }
 
-const { render, languages, buildRobots, buildSitemap } = await import(
+const { render, languages, buildRobots, buildSitemap, getCars } = await import(
   pathToFileURL(path.join(ssrDir, 'entry-server.js')).href
 )
+
+// ---- load the fleet ONCE (same source as the browser: cars.json, Supabase or API, see carsService.js)
+let cars = null
+try {
+  cars = await getCars()
+  console.log(`fleet: ${cars.length} car(s) → rendered into the HTML`)
+} catch (error) {
+  console.warn(`⚠ Could not load the fleet at build time (${error.message}). Pages fall back to a loading state.`)
+}
 
 // ---- one page per language: "/" (default), "/en/", "/ar/"
 const defaultCode = languages[0].code
 for (const { code } of languages) {
-  const page = fillTemplate(render(code))
+  const page = fillTemplate(render(code, cars), cars)
   const outDir = code === defaultCode ? dist : path.join(dist, code)
   fs.mkdirSync(outDir, { recursive: true })
   fs.writeFileSync(path.join(outDir, 'index.html'), page)

@@ -10,6 +10,7 @@
 
 const env = import.meta.env
 const provider = env.VITE_CARS_PROVIDER || 'json'
+export const carsProvider = provider
 
 // ---------- Supabase Storage helpers ----------
 const SUPABASE_URL = env.VITE_SUPABASE_URL
