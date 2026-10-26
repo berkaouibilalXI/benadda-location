@@ -1,0 +1,172 @@
+diff --git a/src/components/CarCarousel.jsx b/src/components/CarCarousel.jsx
+index 7aff39d..674d2a7 100644
+--- a/src/components/CarCarousel.jsx
++++ b/src/components/CarCarousel.jsx
+@@ -20,6 +20,13 @@ export default function CarCarousel({ images = [], label }) {
+ 
+   const [selected, setSelected] = useState(0)
+ 
++  // Only the first photo of each car is downloaded up front. The others are fetched when the visitor
++  // shows interest (touch / hover / focus / arrows / dots). A car with 8 photos no longer costs 8 downloads
++  // on every page view — a car page used to weigh ~2.6 MB, almost all of it photos nobody had looked at yet.
++  const [warm, setWarm] = useState(false)
++  const [seen, setSeen] = useState(() => new Set(images.filter(Boolean).slice(0, 1)))
++  const showInterest = warm ? undefined : () => setWarm(true)
++
+   useEffect(() => {
+     if (!emblaApi) return
+     const onSelect = () => setSelected(emblaApi.selectedScrollSnap())
+@@ -40,6 +47,14 @@ export default function CarCarousel({ images = [], label }) {
+     emblaApi?.reInit()
+   }, [emblaApi, slides.length])
+ 
++  useEffect(() => {
++    const n = slides.length
++    if (!n) return
++    const wanted = [slides[Math.min(selected, n - 1)]]
++    if (warm && n > 1) wanted.push(slides[(selected + 1) % n], slides[(selected - 1 + n) % n])
++    setSeen((prev) => (wanted.every((src) => prev.has(src)) ? prev : new Set([...prev, ...wanted])))
++  }, [slides, selected, warm])
++
+   if (slides.length === 0) {
+     return <CarIllustration label={label} className="w-full max-md:w-42.5" />
+   }
+@@ -50,6 +65,9 @@ export default function CarCarousel({ images = [], label }) {
+       aria-roledescription="carousel"
+       aria-label={label}
+       className="relative aspect-3/2 w-full select-none bg-field max-md:max-w-[320px]"
++      onPointerEnter={showInterest}
++      onTouchStart={showInterest}
++      onFocusCapture={showInterest}
+     >
+       <div ref={emblaRef} className="size-full overflow-hidden">
+         <div
+@@ -59,15 +77,19 @@ export default function CarCarousel({ images = [], label }) {
+         >
+           {slides.map((src, i) => (
+             <div key={src} className="min-w-0 flex-[0_0_100%]">
+-              <img
+-                src={src}
+-                alt={multiple ? `${label} (${i + 1}/${slides.length})` : label}
+-                loading="lazy"
+-                decoding="async"
+-                draggable={false}
+-                onError={() => setFailed((prev) => new Set(prev).add(src))}
+-                className="size-full object-cover"
+-              />
++              {seen.has(src) ? (
++                <img
++                  src={src}
++                  alt={multiple ? `${label} (${i + 1}/${slides.length})` : label}
++                  loading="lazy"
++                  decoding="async"
++                  draggable={false}
++                  onError={() => setFailed((prev) => new Set(prev).add(src))}
++                  className="size-full object-cover"
++                />
++              ) : (
++                <div className="size-full" aria-hidden="true" />
++              )}
+             </div>
+           ))}
+         </div>
+@@ -90,7 +112,7 @@ export default function CarCarousel({ images = [], label }) {
+             </button>
+           ))}
+ 
+-          <div className="absolute inset-x-0 bottom-1 flex justify-center">
++          <div className="absolute inset-x-0 bottom-0 flex justify-center">
+             {slides.map((src, i) => (
+               <button
+                 key={src}
+@@ -98,7 +120,7 @@ export default function CarCarousel({ images = [], label }) {
+                 aria-label={t('fleet.goTo', { n: i + 1 })}
+                 aria-current={i === selected}
+                 onClick={() => emblaApi?.scrollTo(i)}
+-                className="p-1.5"
++                className="grid h-6 min-w-6 place-items-center px-1"
+               >
+                 <span
+                   className={`block h-1.5 transition-all ${
+diff --git a/src/components/Footer.jsx b/src/components/Footer.jsx
+index 6a4aab6..ecaf99d 100644
+--- a/src/components/Footer.jsx
++++ b/src/components/Footer.jsx
+@@ -15,6 +15,8 @@ export default function Footer() {
+         <img
+           src={asset('logo.png')}
+           alt={site.name}
++          width="520"
++          height="359"
+           className="h-[72px] w-auto"
+         />
+ 
+diff --git a/src/components/Header.jsx b/src/components/Header.jsx
+index 308bdd8..dff2c21 100644
+--- a/src/components/Header.jsx
++++ b/src/components/Header.jsx
+@@ -30,7 +30,7 @@ export default function Header() {
+     <header className="sticky top-0 z-50 border-b border-line bg-ink">
+       <div className="wrap flex h-header items-center gap-5">
+         <a href="#top" aria-label={t('nav.home')} className="shrink-0">
+-          <img src={asset('logo.png')} alt="Benadda Dreamcar" className="h-11 w-auto" />
++          <img src={asset('logo.png')} alt="Benadda Dreamcar" width="520" height="359" className="h-11 w-auto" />
+         </a>
+ 
+         <div className="ms-auto flex items-center gap-4 md:gap-6">
+diff --git a/src/components/HowItWorks.jsx b/src/components/HowItWorks.jsx
+index a27914e..3abf728 100644
+--- a/src/components/HowItWorks.jsx
++++ b/src/components/HowItWorks.jsx
+@@ -30,7 +30,7 @@ export default function HowItWorks() {
+     <section id="how" className="bg-paper py-section text-ink">
+       <div className="wrap">
+         <div className="mb-11.5 flex flex-wrap items-center gap-10">
+-          <img src={asset('logo-dark.png')} alt={t('how.logoAlt')} className="h-auto w-57.5" />
++          <img src={asset('logo-dark.png')} alt={t('how.logoAlt')} width="520" height="359" className="h-auto w-57.5" />
+           <h2 className="text-h2">{t('how.title')}</h2>
+         </div>
+ 
+diff --git a/src/hooks/useCars.js b/src/hooks/useCars.js
+index 7d39cc4..e1869b8 100644
+--- a/src/hooks/useCars.js
++++ b/src/hooks/useCars.js
+@@ -32,12 +32,20 @@ export function useCars(initialCars = null) {
+   useEffect(() => {
+     if (!initialCars) {
+       load()
+-    } else if (carsProvider !== 'json' || initialCars.some((c) => c.imagesFolder)) {
+-      // Anything fetched from a remote source (Supabase data, or photos listed from a Supabase folder):
+-      // quietly refresh, so new photos / prices / availability show up without waiting for the next build,
+-      // exactly as before the pre-render step existed.
+-      load({ silent: true })
++      return
+     }
++    if (carsProvider === 'json' && !initialCars.some((c) => c.imagesFolder)) return
++
++    // Anything fetched from a remote source (Supabase data, or photos listed from a Supabase folder):
++    // quietly refresh, so new photos / prices / availability show up without waiting for the next build.
++    // It runs when the browser is idle, so it never competes with the first paint.
++    const run = () => load({ silent: true })
++    if ('requestIdleCallback' in window) {
++      const id = window.requestIdleCallback(run, { timeout: 4000 })
++      return () => window.cancelIdleCallback(id)
++    }
++    const id = setTimeout(run, 2000)
++    return () => clearTimeout(id)
+     // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, [])
+ 
+diff --git a/src/seo/head.js b/src/seo/head.js
+index f836982..f155305 100644
+--- a/src/seo/head.js
++++ b/src/seo/head.js
+@@ -65,7 +65,7 @@ function carJsonLd(car, code, t, url) {
+     name,
+     description: [name, ...specs].join(' · '),
+     category: t(`categories.${car.category}`, { defaultValue: car.category }),
+-    ...(car.image ? { image: car.image } : {}),
++    ...(car.images?.length ? { image: car.images.slice(0, 6) } : car.image ? { image: car.image } : {}),
+     offers: {
+       '@type': 'Offer',
+       url: `${url}#fleet`,
